@@ -92,7 +92,7 @@ article
     align-items: center;
 }
 
-#ciel, #vent
+#sky, #wind
 {
     display: grid;
     grid-template-columns: 1fr;
