@@ -39,6 +39,12 @@ function createRequest()
      sendRequest(inputCity);
 }
 
+function convertInfos(sky)
+{
+     transform = {0:"sunny"};
+     console.log(transform[0]);
+}
+
 function updateDisplay(infos)
 {
      // Temperature
