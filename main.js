@@ -8,11 +8,11 @@ async function sendRequest(request)
 
      var inputCity = document.getElementById("inputCity");
      inputCity = inputCity.value;
-     const response = await fetch(`http://api.meteo-concept.com/api/location/cities?token=8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f&search=${inputCity}`,
+     const response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f&search=${inputCity}`,
         {
             method: 'GET',
             headers: requestHeader,
-            mode:'no-cors'
+            mode:'cors'
         });
 }
 
