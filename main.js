@@ -42,7 +42,7 @@ function createRequest()
 function convertInfos(sky)
 {
      transform = {0:"sun",1:"partly-cloudy",2:"partly-cloudy",3:"clouds",4:"clouds",5:"clouds",6:"haze",7:"haze",10:"rain",11:"heavy-rain",12:"torrential-rain",13:"rain",14:"heavy-rain",15:"torrential-rain",16:"haze",20:"light-snow",14:"snow",15:"snow-storm"};
-     console.log(transform[0]);
+     return transform[sky]
 }
 
 function updateDisplay(infos)
@@ -50,29 +50,30 @@ function updateDisplay(infos)
      // Temperature
      var temperatureElement = document.getElementById("temperature").childNodes[1];
      temperatureElement.innerHTML = infos["temperature"] + "°C";
+     console.log(infos["temperature"]<=21);
      if (infos["temperature"] <= 10)
      {
-          document.body.style.backgroundColor = "rgb(51, 204, 255)";
+          document.body.style.background = "radial-gradient(at bottom left,rgb(51,204,255),rgb(0,102,255))";
      }
      else if (infos["temperature"] <= 21)
      {
-          document.body.style.backgroundColor = "rgb(255, 204, 102)";
+          document.body.style.background = "radial-gradient(at bottom left,rgb(255,204,102),rgb(255,102,0))";
      }
      else
      {
-          document.body.style.backgroundColor = "rgb(255, 51, 0)";
+          document.body.style.background = "radial-gradient(at bottom left,rgb(255,51,0),rgb(204,0,0))";
      }
      // Sky
      var skyElementImage = document.getElementById("sky").childNodes[1];
-     skyElementImage.src = infos["weather"] + ".png";
-     skyElementImage.alt = infos["weather"] + " icon";
+     skyElementImage.src = "medias/" + convertInfos(infos["weather"]) + ".png";
+     skyElementImage.alt = convertInfos(infos["weather"]) + " icon";
      var skyElementText = document.getElementById("sky").childNodes[3];
-     skyElementText.innerHTML = infos["weather"];
+     skyElementText.innerHTML = convertInfos(infos["weather"]);
      // Wind
      var windElementImage = document.getElementById("wind").childNodes[1];
      windElementImage.style.transform = "rotate(" + infos["dirwind"] + "deg)";
      var windElementText = document.getElementById("wind").childNodes[3];
-     windElementText.innerHTML = infos["kmwind"] +"km/h";
+     windElementText.innerHTML = infos["kmwind"] + " km/h";
 }
 
 var searchButton = document.getElementById("search");

@@ -26,6 +26,7 @@ article
     background-color : rgba(242, 242, 242, 0.8);
     backdrop-filter: blur(10px);
     display: grid;
+    transition: width 2s;
 }
 
 #header
@@ -100,6 +101,11 @@ article
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     justify-items: center;
+}
+
+#wind img
+{
+    transition: transform 2s;
 }
 
 #footer
