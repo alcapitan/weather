@@ -104,6 +104,11 @@ article
     justify-items: center;
 }
 
+#sky p
+{
+    text-transform: capitalize;
+}
+
 #wind img
 {
     transition: transform 2s;

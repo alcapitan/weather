@@ -103,7 +103,9 @@ function updateDisplay(infos)
      skyElementImage.src = "medias/" + convertInfos(infos["weather"]) + ".png";
      skyElementImage.alt = convertInfos(infos["weather"]) + " icon";
      var skyElementText = document.getElementById("sky").childNodes[3];
-     skyElementText.innerHTML = convertInfos(infos["weather"]);
+     skyElementTextValue = convertInfos(infos["weather"]);
+     skyElementTextValue = skyElementTextValue.replace("-"," ");
+     skyElementText.innerHTML = skyElementTextValue;
      // Wind
      var windElementImage = document.getElementById("wind").childNodes[1];
      windElementImage.style.transform = "rotate(" + infos["dirwind"] + "deg)";
