@@ -1,3 +1,21 @@
+// Lance une requête quand touche Entrée est pressé
+function pressEnter(e)
+{
+     if (e.code == "Enter")
+     {
+          createRequest()
+     }
+}
+
+// Récupère la ville entrée pour envoyer la requête
+function createRequest()
+{
+     var inputCity = document.getElementById("inputCity");
+     inputCity = inputCity.value;
+     sendRequest(inputCity);
+}
+
+// Exécute les requêtes et renvoie des données lisibles pour l'affichage
 async function sendRequest(city)
 {
      // Header des requêtes
@@ -32,25 +50,19 @@ async function sendRequest(city)
      updateDisplay(result);
 }
 
-function createRequest()
-{
-     var inputCity = document.getElementById("inputCity");
-     inputCity = inputCity.value;
-     sendRequest(inputCity);
-}
-
+// Converti les numéros de l'API en texte fonctionnel pour l'affichage
 function convertInfos(sky)
 {
      transform = {0:"sun",1:"partly-cloudy",2:"partly-cloudy",3:"clouds",4:"clouds",5:"clouds",6:"haze",7:"haze",10:"rain",11:"heavy-rain",12:"torrential-rain",13:"rain",14:"heavy-rain",15:"torrential-rain",16:"haze",20:"light-snow",14:"snow",15:"snow-storm"};
      return transform[sky]
 }
 
+// Modifie l'affichage avec les infos données
 function updateDisplay(infos)
 {
      // Temperature
      var temperatureElement = document.getElementById("temperature").childNodes[1];
-     temperatureElement.innerHTML = infos["temperature"] + "°C";
-     console.log(infos["temperature"]<=21);
+     temperatureElement.innerHTML = infos["temperature"] + " °C";
      if (infos["temperature"] <= 10)
      {
           document.body.style.background = "radial-gradient(at bottom left,rgb(51,204,255),rgb(0,102,255))";
@@ -76,5 +88,7 @@ function updateDisplay(infos)
      windElementText.innerHTML = infos["kmwind"] + " km/h";
 }
 
+// Démarre le processus par le lancement de la recherche
 var searchButton = document.getElementById("search");
 searchButton.addEventListener('click',createRequest);
+document.addEventListener('keyup', pressEnter);
