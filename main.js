@@ -33,18 +33,19 @@ function createRequest()
 // Exécute les requêtes et renvoie des données lisibles pour l'affichage
 async function sendRequest(city)
 {
+     token = "3a319049d37a193ddb11713cf607d4a27d5f5e0dd80f9214ccb97aeeddae2a6a";
      // Header des requêtes
      var requestHeader = new Headers({
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer 8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f' 
+          'Authorization': 'Bearer ' + token 
      });
      // Réception villes possibles parmi recherche
-     var response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f&search=${city}`,
+     var response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${city}`,
      {
           method: 'GET',
           headers: requestHeader,
-          mode:'cors'
+          mode:'no-cors'
      });
      var content = await response.json(); // Converti la réponse en JSON
      if (content.cities["length"] == 0)
@@ -54,11 +55,11 @@ async function sendRequest(city)
      }
      var insee = content.cities[0]["insee"]; // Révèle l'INSEE de la ville en premier résultat
      // Réception des infos sur la ville
-     var responseInsee = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f&insee=${insee}`,
+     var responseInsee = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=${insee}`,
      {
           method: 'GET',
           headers: requestHeader,
-          mode:'cors'
+          mode:'no-cors'
      });
      var contentInsee = await responseInsee.json(); // Converti la réponse en JSON
      inputCity.value = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
