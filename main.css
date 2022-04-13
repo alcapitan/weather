@@ -84,6 +84,13 @@ article
     margin : 15px;
 }
 
+#body div p:nth-child(3)
+{
+    margin : 5px;
+    font-size : 1.3rem;
+    color : rgb(102, 102, 102);
+}
+
 #temperature
 {
     display: grid;
@@ -92,6 +99,21 @@ article
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     align-items: center;
+}
+
+#temperature p
+{
+    margin : 20px 10px;
+}
+
+#temperature div p:nth-child(1)
+{
+    color : rgb(0, 102, 255);
+}
+
+#temperature div p:nth-child(2)
+{
+    color : rgb(255, 51, 0);
 }
 
 #sky, #wind
@@ -112,11 +134,6 @@ article
 #wind img
 {
     transition: transform 2s;
-}
-
-#footer
-{
-    grid-area: 3 / 1 / 4 / 2;
 }
 
 #errors

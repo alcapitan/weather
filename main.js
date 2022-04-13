@@ -65,9 +65,14 @@ async function sendRequest(city)
      var result = {}; // Créé un objet avec toutes les infos nécessaires
      result["codePostal"] = contentInsee.forecast[0]["cp"];
      result["kmwind"] = contentInsee.forecast[0]["wind10m"];
+     result["kmgust"] = contentInsee.forecast[0]["gust10m"];
      result["dirwind"] = contentInsee.forecast[0]["dirwind10m"];
      result["weather"] = contentInsee.forecast[0]["weather"];
-     result["temperature"] = (contentInsee.forecast[0]["tmin"] + contentInsee.forecast[0]["tmax"]) / 2;
+     result["temp"] = (contentInsee.forecast[0]["tmin"] + contentInsee.forecast[0]["tmax"]) / 2;
+     result["tempmin"] = contentInsee.forecast[0]["tmin"]
+     result["tempmax"] = contentInsee.forecast[0]["tmax"]
+     result["probarain"] = contentInsee.forecast[0]["probarain"]
+     result["rr10"] = contentInsee.forecast[0]["rr10"]
      updateDisplay(result);
 }
 
@@ -85,13 +90,15 @@ function updateDisplay(infos)
      errorsContainer.style.display = "none";
      document.getElementById("body").style.display = "grid";
      // Temperature
-     var temperatureElement = document.getElementById("temperature").childNodes[1];
-     temperatureElement.innerHTML = infos["temperature"] + " °C";
-     if (infos["temperature"] <= 10)
+     var temperatureElementMin = document.getElementById("temperature").childNodes[1].childNodes[1];
+     temperatureElementMin.innerHTML = infos["tempmin"] + " °C";
+     var temperatureElementMax = document.getElementById("temperature").childNodes[1].childNodes[3];
+     temperatureElementMax.innerHTML = infos["tempmax"] + " °C";
+     if (infos["temp"] <= 10)
      {
           document.body.style.background = "radial-gradient(at bottom left,rgb(51,204,255),rgb(0,102,255))";
      }
-     else if (infos["temperature"] <= 21)
+     else if (infos["temp"] <= 21)
      {
           document.body.style.background = "radial-gradient(at bottom left,rgb(255,204,102),rgb(255,102,0))";
      }
@@ -107,11 +114,22 @@ function updateDisplay(infos)
      skyElementTextValue = convertInfos(infos["weather"]);
      skyElementTextValue = skyElementTextValue.replace("-"," ");
      skyElementText.innerHTML = skyElementTextValue;
+     var rainElementText = document.getElementById("sky").childNodes[5];
+     if (infos["probarain"] > 0)
+     {
+          rainElementText.innerHTML = infos["probarain"] + "%";
+     }
+     if (infos["rr10"] > 0)
+     {
+          rainElementText.innerHTML = rainElementText.innerHTML + " | " + infos["rr10"] + "mm";
+     }
      // Wind
      var windElementImage = document.getElementById("wind").childNodes[1];
      windElementImage.style.transform = "rotate(" + infos["dirwind"] + "deg)";
      var windElementText = document.getElementById("wind").childNodes[3];
      windElementText.innerHTML = infos["kmwind"] + " km/h";
+     var gustElementText = document.getElementById("wind").childNodes[5];
+     gustElementText.innerHTML = infos["kmgust"] + " km/h";
 }
 
 // Démarre le processus par le lancement de la recherche
