@@ -63,6 +63,7 @@ article
     grid-template-rows: 1fr;
     grid-column-gap: 50px;
     grid-row-gap: 0px;
+    display : none;
 }
 
 #body > *
@@ -111,5 +112,16 @@ article
 #footer
 {
     grid-area: 3 / 1 / 4 / 2;
+}
+
+#errors
+{
+    padding : 20px 50px;
+}
+
+#errors p
+{
+    margin : 0;
+    text-align: center;
 }
 

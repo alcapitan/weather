@@ -7,9 +7,24 @@ function pressEnter(e)
      }
 }
 
+// AFfiche message d'erreur
+function error(message)
+{
+     document.body.style.background = "radial-gradient(rgb(51, 204, 204),rgb(0, 204, 153))";
+     errorsText.innerHTML = message;
+     errorsContainer.style.display = "block";
+     document.getElementById("body").style.display = "none";
+}
+
+
 // Récupère la ville entrée pour envoyer la requête
 function createRequest()
 {
+     if (navigator.onLine == false)
+     {
+          error("Vous n'êtes pas connecté à Internet.");
+          return
+     }
      var inputCity = document.getElementById("inputCity");
      inputCity = inputCity.value;
      sendRequest(inputCity);
@@ -32,6 +47,11 @@ async function sendRequest(city)
           mode:'cors'
      });
      var content = await response.json(); // Converti la réponse en JSON
+     if (content.cities["length"] == 0)
+     {
+          error("Aucune ville n'a été trouvée.");
+          return
+     }
      var insee = content.cities[0]["insee"]; // Révèle l'INSEE de la ville en premier résultat
      // Réception des infos sur la ville
      var responseInsee = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f&insee=${insee}`,
@@ -60,6 +80,9 @@ function convertInfos(sky)
 // Modifie l'affichage avec les infos données
 function updateDisplay(infos)
 {
+     // Affiche les résultats
+     errorsContainer.style.display = "none";
+     document.getElementById("body").style.display = "grid";
      // Temperature
      var temperatureElement = document.getElementById("temperature").childNodes[1];
      temperatureElement.innerHTML = infos["temperature"] + " °C";
@@ -92,3 +115,9 @@ function updateDisplay(infos)
 var searchButton = document.getElementById("search");
 searchButton.addEventListener('click',createRequest);
 document.addEventListener('keyup', pressEnter);
+
+// Gestion d'erreurs
+var errorsContainer = document.getElementById("errors");
+var errorsText = errorsContainer.childNodes[1];
+errorsText.innerHTML = "Saisissez une ville.";
+
