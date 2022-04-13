@@ -41,7 +41,7 @@ function createRequest()
 
 function convertInfos(sky)
 {
-     transform = {0:"sunny"};
+     transform = {0:"sun",1:"partly-cloudy",2:"partly-cloudy",3:"clouds",4:"clouds",5:"clouds",6:"haze",7:"haze",10:"rain",11:"heavy-rain",12:"torrential-rain",13:"rain",14:"heavy-rain",15:"torrential-rain",16:"haze",20:"light-snow",14:"snow",15:"snow-storm"};
      console.log(transform[0]);
 }
 
