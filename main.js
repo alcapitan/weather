@@ -61,6 +61,7 @@ async function sendRequest(city)
           mode:'cors'
      });
      var contentInsee = await responseInsee.json(); // Converti la réponse en JSON
+     inputCity.value = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
      var result = {}; // Créé un objet avec toutes les infos nécessaires
      result["codePostal"] = contentInsee.forecast[0]["cp"];
      result["kmwind"] = contentInsee.forecast[0]["wind10m"];
