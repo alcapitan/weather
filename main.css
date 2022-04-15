@@ -87,7 +87,7 @@ article
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4,auto);
-    grid-row-gap: 20px;
+    grid-row-gap: 15px;
     justify-items: center;
 }
 
@@ -156,25 +156,30 @@ article
     color : rgb(102, 102, 102);
 }
 
-#temperature
+#today .temperature
 {
     display: grid;
     align-items: center;
 }
 
-#today #temperature p
+#today .temperature p
 {
     margin : 20px 10px;
 }
 
-#temperature div p:nth-child(1)
+.temperature div p:nth-child(1), .temperature p:nth-child(1)
 {
     color : rgb(0, 102, 255);
 }
 
-#temperature div p:nth-child(2)
+.temperature div p:nth-child(2), .temperature p:nth-child(2)
 {
     color : rgb(255, 51, 0);
+}
+
+#threeDays .temperature p, #week .temperature p
+{
+    margin : 10px;
 }
 
 #sky, #wind
@@ -232,5 +237,25 @@ article
     border: 1px solid rgb(102, 102, 102);
     border-radius: 10px;
     background-color: rgba(255, 255, 255,0.8);
+}
+
+
+/* Footer */
+
+footer
+{
+    position: absolute;
+    bottom: 0;
+    width : 100%;
+}
+
+footer p
+{
+    text-align: center;
+}
+
+footer a
+{
+    color : black;
 }
 
