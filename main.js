@@ -63,6 +63,7 @@ async function sendRequest(city)
           mode:'cors'
      });
      const contentInsee = await responseInsee.json(); // Converti la réponse en JSON
+     console.log(contentInsee);
      inputCity.value = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
      let result = {}; // Créé un objet avec toutes les infos nécessaires
      result["codePostal"] = contentInsee.forecast[0]["cp"];
@@ -81,7 +82,7 @@ async function sendRequest(city)
 // Converti les numéros de l'API en texte fonctionnel pour l'affichage
 function convertInfos(sky)
 {
-     const transform = {0:"sun",1:"partly-cloudy",2:"partly-cloudy",3:"clouds",4:"clouds",5:"clouds",6:"haze",7:"haze",10:"rain",11:"heavy-rain",12:"torrential-rain",13:"rain",14:"heavy-rain",15:"torrential-rain",16:"haze",20:"light-snow",21:"snow",22:"snow-storm",30:"rain",31:"heavy-rain",32:"torrential-rain",40:"rain",41:"heavy-rain",42:"torrential-rain",43:"rain",44:"heavy-rain",45:"torrential-rain",46:"rain",47:"heavy-rain",48:"torrential-rain",60:"light-snow",61:"snow",62:"snow-storm",63:"light-snow",64:"snow",65:"snow-storm",66:"light-snow",67:"snow",68:"snow-storm",70:"rain",71:"heavy-rain",72:"torrential-rain",73:"rain",74:"heavy-rain",75:"torrential-rain",76:"rain",77:"heavy-rain",78:"torrential-rain",100:"cloud-lightning",100:"cloud-lightning",100:"cloud-lightning",100:"cloud-lightning",100:"cloud-lightning",100:"cloud-lightning",100:"cloud-lightning",101:"cloud-lightning",102:"cloud-lightning",103:"cloud-lightning",104:"cloud-lightning",105:"cloud-lightning",106:"cloud-lightning",107:"cloud-lightning",108:"cloud-lightning",120:"cloud-lightning",121:"cloud-lightning",122:"cloud-lightning",123:"cloud-lightning",124:"cloud-lightning",125:"cloud-lightning",126:"cloud-lightning",127:"cloud-lightning",128:"cloud-lightning",130:"cloud-lightning",131:"cloud-lightning",132:"cloud-lightning",133:"cloud-lightning",134:"cloud-lightning",135:"cloud-lightning",136:"cloud-lightning",137:"cloud-lightning",138:"cloud-lightning",140:"cloud-lightning",141:"cloud-lightning",142:"cloud-lightning",210:"rain",211:"heavy-rain",212:"torrential-rain",220:"light-snow",221:"snow",222:"snow-storm",230:"rain",231:"heavy-rain",232:"torrential-rain",235:"hail"};
+     const transform = {0:["sun","ensoleillé"],1:["partly-cloudy","éclaircies"],2:["partly-cloudy","éclaircies"],3:["clouds","nuageux"],4:["clouds","nuageux"],5:["clouds","nuageux"],6:["haze","brouillard"],7:["haze","brouillard"],10:["rain","pluie fine"],11:["heavy-rain","pluie"],12:["torrential-rain","tempête pluvieuse"],13:["rain","pluie fine"],14:["heavy-rain","pluie"],15:["torrential-rain","tempête pluvieuse"],16:["haze","brouillard"],20:["light-snow","neige légère"],21:["snow","neige"],22:["snow-storm","tempête de neige"],30:["rain","pluie fine"],31:["heavy-rain","pluie"],32:["torrential-rain","tempête pluvieuse"],40:["rain","pluie fine"],41:["heavy-rain","pluie"],42:["torrential-rain","tempête pluvieuse"],43:["rain","pluie fine"],44:["heavy-rain","pluie"],45:["torrential-rain","tempête pluvieuse"],46:["rain","pluie fine"],47:["heavy-rain","pluie"],48:["torrential-rain","tempête pluvieuse"],60:["light-snow","neige légère"],61:["snow","neige"],62:["snow-storm","tempête de neige"],63:["light-snow","neige légère"],64:["snow","neige"],65:["snow-storm","tempête de neige"],66:["light-snow","neige légère"],67:["snow","neige"],68:["snow-storm","tempête de neige"],70:["rain","pluie fine"],71:["heavy-rain","pluie"],72:["torrential-rain","tempête pluvieuse"],73:["rain","pluie fine"],74:["heavy-rain","pluie"],75:["torrential-rain","tempête pluvieuse"],76:["rain","pluie fine"],77:["heavy-rain","pluie"],78:["torrential-rain","tempête pluvieuse"],100:["cloud-lightning","orages"],100:["cloud-lightning","orages"],100:["cloud-lightning","orages"],100:["cloud-lightning","orages"],100:["cloud-lightning","orages"],100:["cloud-lightning","orages"],100:["cloud-lightning","orages"],101:["cloud-lightning","orages"],102:["cloud-lightning","orages"],103:["cloud-lightning","orages"],104:["cloud-lightning","orages"],105:["cloud-lightning","orages"],106:["cloud-lightning","orages"],107:["cloud-lightning","orages"],108:["cloud-lightning","orages"],120:["cloud-lightning","orages"],121:["cloud-lightning","orages"],122:["cloud-lightning","orages"],123:["cloud-lightning","orages"],124:["cloud-lightning","orages"],125:["cloud-lightning","orages"],126:["cloud-lightning","orages"],127:["cloud-lightning","orages"],128:["cloud-lightning","orages"],130:["cloud-lightning","orages"],131:["cloud-lightning","orages"],132:["cloud-lightning","orages"],133:["cloud-lightning","orages"],134:["cloud-lightning","orages"],135:["cloud-lightning","orages"],136:["cloud-lightning","orages"],137:["cloud-lightning","orages"],138:["cloud-lightning","orages"],140:["cloud-lightning","orages"],141:["cloud-lightning","orages"],142:["cloud-lightning","orages"],210:["rain","pluie fine"],211:["heavy-rain","pluie"],212:["torrential-rain","tempête pluvieuse"],220:["light-snow","neige légère"],221:["snow","neige"],222:["snow-storm","tempête de neige"],230:["rain","pluie fine"],231:["heavy-rain","pluie"],232:["torrential-rain","tempête pluvieuse"],235:["hail","grêle"]};
      return transform[sky]
 }
 
@@ -90,7 +91,7 @@ function updateDisplay(infos)
 {
      // Affiche les résultats
      errorsContainer.style.display = "none";
-     document.getElementById("body").style.display = "grid";
+     document.getElementById("body").style.display = "block";
      document.getElementById("footer").style.display = "flex";
      // Temperature
      const temperatureElementMin = document.getElementById("temperature").childNodes[1].childNodes[1];
@@ -111,11 +112,10 @@ function updateDisplay(infos)
      }
      // Sky
      const skyElementImage = document.getElementById("sky").childNodes[1];
-     skyElementImage.src = "medias/" + convertInfos(infos["weather"]) + ".png";
-     skyElementImage.alt = convertInfos(infos["weather"]) + " icon";
+     skyElementImage.src = "medias/" + convertInfos(infos["weather"])[0] + ".png";
+     skyElementImage.alt = "Icône " + convertInfos(infos["weather"])[1];
      const skyElementText = document.getElementById("sky").childNodes[3];
-     skyElementTextValue = convertInfos(infos["weather"]);
-     skyElementTextValue = skyElementTextValue.replace("-"," ");
+     skyElementTextValue = convertInfos(infos["weather"])[1];
      skyElementText.innerHTML = skyElementTextValue;
      const rainElementText = document.getElementById("sky").childNodes[5];
      if (infos["probarain"] > 0)
@@ -142,14 +142,19 @@ function changeCategorie(elem)
      {
           categories[i].id = "";
      }
-     console.log(elem);
+     for (let i=0;i<3;i++)
+     {
+          document.getElementById("body").childNodes[(i*2)+1].style.display = "none";
+     }
+     categories[elem].id="categorieActive";
+     document.getElementById("body").childNodes[(elem*2)+1].style.display = "grid";
 }
 
 // Rends dynamique les catégories
 const categories = [document.getElementById("footer").childNodes[1],document.getElementById("footer").childNodes[3],document.getElementById("footer").childNodes[5]];
 for (let i=0;i<3;i++)
 {
-     categories[i].addEventListener("click",changeCategorie(i));
+     categories[i].addEventListener("click",function(){changeCategorie(i)});
 }
 
 // Démarre le processus par le lancement de la recherche

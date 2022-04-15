@@ -1,3 +1,5 @@
+/* Global */
+
 :root
 {
     font-size : 16px;
@@ -30,6 +32,9 @@ article
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
+
+/* Header */
+
 #header
 {
     grid-area: 1 / 1 / 2 / 2;
@@ -37,7 +42,6 @@ article
     grid-template-columns: 1fr 60px;
     grid-template-rows: 1fr;
     grid-column-gap: 20px;
-    grid-row-gap: 0px;
 }
 
 #header input
@@ -56,31 +60,96 @@ article
     margin : 10px;
 }
 
+
+/* Body */
+
 #body
 {
     padding : 10px;
-    grid-area: 2 / 1 / 3 / 2;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 30px;
-    grid-row-gap: 0px;
     display : none;
-}
-
-#body img
-{
-    width : 100px;
-    height : 100px;
 }
 
 #body p
 {
     text-align: center;
-    font-size : 1.8rem;
     margin : 15px;
 }
 
-#body div p:nth-child(3)
+#threeDays, #week
+{
+    display: none;
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+}
+
+#threeDays > div, #week > div
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4,auto);
+    grid-row-gap: 20px;
+    justify-items: center;
+}
+
+#threeDays > div > p, #week > div > p
+{
+    font-weight : bold;
+}
+
+#threeDays > div > img, #week > div > img
+{
+    width : 80px;
+    height : 80px;
+}
+
+#threeDays > div > div, #week > div > div
+{
+    display: flex;
+    align-items: center;
+}
+
+#threeDays > div > div img, #week > div > div img
+{
+    width : 30px;
+    height : 30px;
+}
+
+    /* Errors */
+
+#errors
+{
+    padding : 20px 50px;
+}
+
+#errors p
+{
+    margin : 0;
+    text-align: center;
+}
+
+    /* Today */
+
+#today
+{
+    display : grid;
+    grid-area: 2 / 1 / 3 / 2;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+}
+
+#today img
+{
+    width : 100px;
+    height : 100px;
+}
+
+#today p
+{
+    font-size : 1.8rem;
+}
+
+#today div p:nth-child(3)
 {
     margin : 5px;
     font-size : 1.3rem;
@@ -90,14 +159,10 @@ article
 #temperature
 {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
     align-items: center;
 }
 
-#temperature p
+#today #temperature p
 {
     margin : 20px 10px;
 }
@@ -117,8 +182,6 @@ article
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
     justify-items: center;
 }
 
@@ -132,20 +195,26 @@ article
     transition: transform 2s;
 }
 
-#errors
+    /* Three days */
+
+#threeDays
 {
-    padding : 20px 50px;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-#errors p
+    /* Week */
+
+#week
 {
-    margin : 0;
-    text-align: center;
+    grid-template-columns: repeat(4, 1fr);
 }
+
+
+/* Footer */
 
 #footer
 {
-    margin-top : 10px;
+    margin : 10px;
     display : none;
     justify-content: center;
 }
