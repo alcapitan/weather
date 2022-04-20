@@ -63,7 +63,6 @@ async function sendRequest(city)
           mode:'cors'
      });
      let contentInsee = await responseInsee.json(); // Converti la réponse en JSON
-     console.log(contentInsee);
      inputCity.value = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
      let result = []; // Créé un objet avec toutes les infos nécessaires
      for (i=0;i<8;i++)
@@ -107,7 +106,6 @@ function convertInfos(sky)
 // Modifie l'affichage avec les infos données
 function updateDisplay(infos)
 {
-     console.log(infos);
      // Affiche les résultats
      errorsContainer.style.display = "none";
      document.getElementById("body").style.display = "block";
