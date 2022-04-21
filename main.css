@@ -67,6 +67,7 @@ article
 {
     padding : 10px;
     display : none;
+    cursor : default;
 }
 
 #body p
@@ -125,6 +126,7 @@ article
 {
     margin : 0;
     text-align: center;
+    cursor : default;
 }
 
     /* Today */
@@ -222,6 +224,7 @@ article
     margin : 10px;
     display : none;
     justify-content: center;
+    cursor : default;
 }
 
 #footer p
@@ -252,10 +255,16 @@ footer
 footer p
 {
     text-align: center;
+    cursor : default;
 }
 
 footer a
 {
     color : black;
+}
+
+footer a:hover,footer a:active
+{
+    font-weight : bold;
 }
 
