@@ -1,0 +1,65 @@
+#dataTable /* Tableau entier */
+{
+     margin : 20px;
+     border-radius: 20px;
+     border : 2px rgb(179, 179, 179) solid;
+     overflow: hidden;
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: auto repeat(7, 1fr);
+}
+
+#dataTable img /* Toutesles images dans le tableau */
+{
+     width : 60px;
+     height : 60px;
+}
+
+#dataTable > div /* Lignes */
+{
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: 1fr;
+}
+
+#dataTable > div > div /* Cellules individuellement */
+{
+     border : 1px rgb(179, 179, 179) solid;
+     background-color: rgb(230, 230, 230);
+     padding : 10px 25px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+#dataTable div div p /* Texte dans cellules */
+{
+     margin : 0;
+}
+
+#dataTable div:first-child div p /* Texte dans l'en-tête */
+{
+     font-weight : bold;
+     text-align: center;
+     font-size: 1.2rem;
+}
+
+#dataTable > div > div > * /* Elements dans cellule */
+{
+     margin : 0 5px;
+}
+
+#dataTable > div > div > div p /* Texte dans un enfant de cellule */
+{
+     margin : 10px;
+}
+
+#dataTable > div:nth-child(1n+2) > div:nth-child(3) /* Conteneur température */
+{
+     flex-direction: column;
+}
+
+#dataTable > div:nth-child(1n+2) > div:nth-child(3) p /* Texte température */
+{
+     margin : 5px;
+}

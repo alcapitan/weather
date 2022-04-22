@@ -1,0 +1,95 @@
+.atuiKernel_ToolsCarousel > div /* Aujourd'hui */
+{
+     background : none;
+     width : fit-content;
+     margin : 50px 0;
+     padding : 0;
+     display: flex;
+}
+
+.atuiKernel_ToolsCarousel p /* Toutes le texte */
+{
+     text-align: left;
+}
+
+.atuiKernel_ToolsCarousel img /* Toutes les images */
+{
+     margin : 0 !important;
+     padding : 0 !important;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(1) img /* Image du ciel */
+{
+     width : 200px !important;
+     height : 200px !important;
+     margin : 0 !important;
+     padding : 0 !important;
+}
+
+.atuiKernel_ToolsCarousel > div > div /* Colonnes de Today */
+{
+     display: flex;
+     flex-direction: column;
+     width:fit-content;
+     margin : 0 20px;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(1) /* Première colonne */
+{
+     align-items: center;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) /* Seconde colonne */
+{
+     align-items: flex-start;
+     justify-content: center;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) > p /* Nom de la ville */
+{
+     font-weight: bold;
+     font-size: 1.3rem;
+}
+
+.atuiKernel_ToolsCarousel > div > div > div /* Température et vent */
+{
+     display: inline-flex;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(1) div /* Conteneur infos pluie */ 
+{
+     margin-top : 20px;
+     padding : 0;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(1) div p /* Texte dans infos pluie */ 
+{
+     color : rgba(255,255,255,0.8);
+     padding : 0 15px;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) > div:nth-child(2) /* Conteneur température */
+{
+     padding : 10px 0;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) > div:nth-child(2) p /* Texte température */
+{
+     font-size: 1.3rem;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) > div:nth-child(3) /* Conteneur vent */
+{
+     align-items: center;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) > div:nth-child(3) img /* Image direction vent */
+{
+     width : 60px !important;
+     height : 60px !important;
+}
+
+.atuiKernel_ToolsCarousel > div > div:nth-child(2) > div:nth-child(3) div p:nth-child(2) /* Rafale */
+{
+     color : rgba(255,255,255,0.8);
+}
