@@ -10,11 +10,11 @@ function pressEnter(e)
 // Affiche message d'erreur
 function error(message)
 {
-     document.body.style.background = "radial-gradient(rgb(51, 204, 204),rgb(0, 204, 153))";
-     errorsText.innerHTML = message;
-     errorsContainer.style.display = "block";
-     document.getElementById("body").style.display = "none";
-     document.getElementById("footer").style.display = "none";
+     document.getElementsByClassName("atuiKernel_ToolsCarousel")[0].style.background = "radial-gradient(rgb(51, 204, 204),rgb(0, 204, 153))";
+     errorText.innerHTML = message;
+     errorText.style.display = "block";
+     document.getElementById("today").style.display = "none";
+     document.getElementById("dataTable").style.display = "none";
 }
 
 
@@ -26,8 +26,9 @@ function createRequest()
           error("Vous n'êtes pas connecté à Internet.");
           return
      }
-     let inputCity = document.getElementById("inputCity");
+     let inputCity = document.getElementsByName("atuiSearchServices_Request")[0];
      inputCity = inputCity.value;
+     console.info(inputCity);
      sendRequest(inputCity);
 }
 
@@ -63,7 +64,7 @@ async function sendRequest(city)
           mode:'cors'
      });
      let contentInsee = await responseInsee.json(); // Converti la réponse en JSON
-     inputCity.value = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
+     document.getElementById("todaySecondColumn").childNodes[1].value = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
      let result = []; // Créé un objet avec toutes les infos nécessaires
      for (i=0;i<8;i++)
      {
@@ -108,8 +109,8 @@ function updateDisplay(infos)
 {
      // Affiche les résultats
      errorsContainer.style.display = "none";
-     document.getElementById("body").style.display = "block";
-     document.getElementById("footer").style.display = "flex";
+     document.getElementById("today").style.display = "flex";
+     document.getElementById("dataTable").style.display = "grid";
 
      /* Today */
      // Temperature
@@ -202,35 +203,11 @@ function updateDisplay(infos)
      }
 }
 
-// Choix catégorie d'information
-function changeCategorie(elem)
-{
-     for (let i=0;i<3;i++)
-     {
-          categories[i].id = "";
-     }
-     for (let i=0;i<3;i++)
-     {
-          document.getElementById("body").childNodes[(i*2)+1].style.display = "none";
-     }
-     categories[elem].id="categorieActive";
-     document.getElementById("body").childNodes[(elem*2)+1].style.display = "grid";
-}
-
-// Rends dynamique les catégories
-const categories = [document.getElementById("footer").childNodes[1],document.getElementById("footer").childNodes[3],document.getElementById("footer").childNodes[5]];
-for (let i=0;i<3;i++)
-{
-     categories[i].addEventListener("click",function(){changeCategorie(i)});
-}
-
 // Démarre le processus par le lancement de la recherche
-const searchButton = document.getElementById("search");
+const searchButton = document.getElementById("searchBtn");
 searchButton.addEventListener('click',createRequest);
 document.addEventListener('keyup', pressEnter);
 
 // Gestion d'erreurs
-const errorsContainer = document.getElementById("errors");
-const errorsText = errorsContainer.childNodes[1];
-errorsText.innerHTML = "Saisissez une ville.";
-
+const errorText = document.getElementById("error");
+errorText.innerHTML = "Saisissez une ville.";

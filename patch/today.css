@@ -4,7 +4,7 @@
      width : fit-content;
      margin : 50px 0;
      padding : 0;
-     display: flex;
+     display: none;
 }
 
 .atuiKernel_ToolsCarousel p /* Toutes le texte */

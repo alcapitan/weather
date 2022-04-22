@@ -6,7 +6,7 @@ Version : 0.2
 
 
 atuiSearchService_HeaderGenerateinfoRecentsearches = [["satisfied drop room","https://www.at.ma"],["era assumption grow","https://www.at.ma"],["score wheel shaft","https://www.at.ma"],["veil crossing inhabitant","https://www.at.ma"],["ratio spoil freedom","https://www.at.ma"]]
-atuiSearchService_HeaderGenerateinfoSuggestedsearches = [["charter gutter merit","https://www.at.ma"],["meaning presidency maze","https://www.at.ma"],["different federation zone","https://www.at.ma"],["realize praise doctor","https://www.at.ma"],["network atmosphere last","https://www.at.ma"]]
+//atuiSearchService_HeaderGenerateinfoSuggestedsearches = [["charter gutter merit","https://www.at.ma"],["meaning presidency maze","https://www.at.ma"],["different federation zone","https://www.at.ma"],["realize praise doctor","https://www.at.ma"],["network atmosphere last","https://www.at.ma"]]
 
 function atuiSearchService_HeaderGenerateinfo(element)
 {
@@ -22,7 +22,7 @@ function atuiSearchService_HeaderGenerateinfo(element)
           atuiSearchService_HeaderGenerateinfoRecentsearchesContainer.appendChild(atuiSearchService_HeaderGenerateinfoRecentsearchesNewlink);
      }
      /* Suggested searches */
-     atuiSearchService_HeaderGenerateinfoSuggestedsearchesContainer = element.childNodes[3].childNodes[3];
+     /*atuiSearchService_HeaderGenerateinfoSuggestedsearchesContainer = element.childNodes[3].childNodes[3];
      atuiSearchService_HeaderGenerateinfoSuggestedsearchesContainer.textContent = "";
      for (let counter in atuiSearchService_HeaderGenerateinfoSuggestedsearches)
      {
@@ -31,7 +31,7 @@ function atuiSearchService_HeaderGenerateinfo(element)
           atuiSearchService_HeaderGenerateinfoSuggestedsearchesNewlink.appendChild(atuiSearchService_HeaderGenerateinfoSuggestedsearchesNewlinkText);
           atuiSearchService_HeaderGenerateinfoSuggestedsearchesNewlink.setAttribute("href",atuiSearchService_HeaderGenerateinfoRecentsearches[counter][1]);
           atuiSearchService_HeaderGenerateinfoSuggestedsearchesContainer.appendChild(atuiSearchService_HeaderGenerateinfoSuggestedsearchesNewlink);
-     }
+     }*/
 }
 
 
