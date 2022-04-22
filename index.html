@@ -2,143 +2,97 @@
 <html lang="fr">
      <head>
           <meta charset="UTF-8">
-          <meta name="description" content="Fourni la météo jusqu'à 1 semaine dans toutes les villes françaises. ">
+          <meta name="description" content="AT Weather fournit la météo sur 7 jours dans les villes de France métropolitaine.">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta name="robots" content="index,follow">
-          <title>Weather</title>
+          <link rel="canonical" href="https://alcapitan.github.io/meteo">
+          <meta name="theme-color" content="#e63300">
+          <title>AT Weather</title>
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Red+Hat+Display&display=swap" rel="stylesheet" defer>
-          <link rel="stylesheet" type="text/css" href="main.css" >
-          <link rel="icon" type="img/png" href="medias/logo.png">
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Red+Hat+Display&display=swap" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="atui/kernel/main.css" >
+          <link rel="stylesheet" type="text/css" href="atui/SearchService/main.css">
+          <link rel="stylesheet" type="text/css" href="patch/main.css">
+          <link rel="icon" type="img/png" href="patch/icons/logo.png">
      </head>
      <body>
-          <article id="article">
-               <div id="header">
-                    <input type="text" placeholder="Ville" id="inputCity">
-                    <img src="medias/search.png" alt="Rechercher..." id="search">
-               </div>
-               <div id="errors">
-                    <p>Activez Javascript pour utiliser la météo.</p>
-               </div>
-               <div id="body">
-                    <div id="today">
-                         <div class="temperature">
-                              <div>
-                                   <p></p>
-                                   <p></p>
+          <header id="atuiKernel_Header">
+               <aside>
+                    <div>
+                         <div id="atuiKernel_HeaderBlockLeft">
+                              <div id="atuiKernel_HeaderLogotype">
+                                   <a href="https://alcapitan.github.io/atui">
+                                        <img alt="Icone du site" src="patch/icons/logo.png">
+                                        <p>AT Weather</p>
+                                   </a>
                               </div>
                          </div>
-                         <div id="sky">
-                              <img src="" alt="">
-                              <p></p>
-                              <p></p>
+                         <div id="atuiKernel_HeaderBlockCenter">
+                              <nav id="atuiSearchServices_Header">
+                                   <div>
+                                        <form action="" method="post"><!-- Lier le fichier PHP dans action -->
+                                             <input name="atuiSearchServices_Request" type="text" placeholder="Faites une recherche...">
+                                             <button type="submit">
+                                                  <img src="atui/SearchService/medias/search.png" alt="Rechercher">
+                                             </button>
+                                        </form>
+                                   </div>
+                                   <aside>
+                                        <article>
+                                             <p>Recherches récentes</p>
+                                             <div>
+                                             </div>
+                                        </article>
+                                        <article>
+                                             <p>Suggestions</p>
+                                             <div>
+                                             </div>
+                                        </article>
+                                   </aside>
+                              </nav>
                          </div>
-                         <div id="wind">
-                              <img src="medias/wind-direction.png" alt="Wind icon">
-                              <p></p>
-                              <p></p>
-                         </div>
-                    </div>
-                    <div id="threeDays">
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
-                              </div>
-                         </div>
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
-                              </div>
-                         </div>
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
+                         <div id="atuiKernel_HeaderBlockRight">
+                              <div id="atuiKernel_ToolsSettingsDisplaymode">
+                                   <img alt="Mode clair activé" src="atui/kernel/medias/light.png">
                               </div>
                          </div>
                     </div>
-                    <div id="week">
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
-                              </div>
-                         </div>
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
-                              </div>
-                         </div>
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
-                              </div>
-                         </div>
-                         <div>
-                              <p></p>
-                              <img src="" alt="">
-                              <div class="temperature">
-                                   <p></p>
-                                   <p></p>
-                              </div>
-                              <div>
-                                   <p></p>
-                                   <img src="medias/wind-direction.png" alt="">
-                              </div>
-                         </div>
+               </aside>
+               <article class="atuiKernel_ToolsCarousel">
+                    <div>
                     </div>
+               </article>
+          </header>
+          <section>
+               <table>
+                    <!-- Tableau des données -->
+               </table>
+               <div class="atuiKernel_SectionText">
+                    <p>Les données proviennent de l'<a href="https://api.meteo-concept.com/" target="_blank">API de Météo Concept</a>. </p>
                </div>
-               <div id="footer">
-                    <p id="categorieActive">Aujourd'hui</p>
-                    <p>3 jours</p>
-                    <p>1 semaine</p>
-               </div>
-          </article>
+          </section>
           <footer>
-               <p>Version Web</p>
-               <p>Données par <a href="https://api.meteo-concept.com/" target="_blank">Météo Concept</a></p>
+               <a href="#atuiKernel_Header" id="atuiKernel_FooterBackup">
+                    <img alt="Remonter en haut de la page" src="atui/kernel/medias/backUp.png">
+               </a>
+               <div id="atuiKernel_ToolsContact">
+                    <p>Contacts</p>
+                    <div id="atuiKernel_ToolsContactBroad">
+     
+                    </div>
+                    <div id="atuiKernel_ToolsContactCompact">
+                         <a href="https://github.com/alcapitan/meteo"><img src="atui/kernel/medias/github.png" alt="Répertoire GitHub de AT Weather"></a>
+                    </div>
+               </div>
+               <div id="atuiKernel_PriorityLabel">
+                    <a href="https://github.com/alcapitan/atui" target="_blank">Ce site est basé sur ATUI 0.2 . En savoir plus...</a>
+               </div>
           </footer>
+          <aside id="atuiKernel_Notification">
+          </aside>
+          <script src="atui/kernel/main.js"></script>
+          <script src="atui/SearchService/main.js"></script>
+          <script src="patch/main.js"></script>
      </body>
-     <script src="main.js"></script>
 </html>
