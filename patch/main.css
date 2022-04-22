@@ -1,4 +1,94 @@
-.atuiKernel_ToolsCarousel
+.atuiKernel_ToolsCarousel /* Carrousel */
 {
-     background : radial-gradient(rgb(51, 204, 204),rgb(0, 204, 153));
+     height : auto !important;
+     background : radial-gradient(circle at bottom,rgb(51, 204, 204),rgb(0, 204, 153));
+}
+
+.atuiKernel_ToolsCarousel > div /* Aujourd'hui */
+{
+     background : none;
+     width : 60%;
+     margin : 50px 0;
+     padding : 0;
+     border : 1px black dashed;
+}
+
+.atuiKernel_ToolsCarousel img
+{
+     width : 100px !important;
+     height : 100px !important;
+     margin : 0 !important;
+     padding : 0 !important;
+}
+
+body > section
+{
+     display : flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+#dataTable /* Tableau entier */
+{
+     margin : 20px;
+     border-radius: 20px;
+     border : 2px rgb(179, 179, 179) solid;
+     overflow: hidden;
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 41px repeat(7, 1fr);
+}
+
+#dataTable > div /* Lignes */
+{
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: 1fr;
+}
+
+#dataTable > div > div /* Cellules de manière individuelle */
+{
+     border : 1px rgb(179, 179, 179) solid;
+     background-color: rgb(230, 230, 230);
+     padding : 10px 25px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+#dataTable div div p /* Texte dans cellules */
+{
+     margin : 0;
+}
+
+#dataTable div:first-child div p /* Texte dans l'en-tête */
+{
+     font-weight : bold;
+     text-align: center;
+}
+
+#dataTable > div > div > * /* Parties de cellule */
+{
+     margin : 0 5px;
+}
+
+#dataTable > div > div > div p /* Texte dans partie de cellule */
+{
+     margin : 10px;
+}
+
+#dataTable img
+{
+     width : 60px;
+     height : 60px;
+}
+
+#dataTable > div:nth-child(1n+2) > div:nth-child(3)
+{
+     flex-direction: column;
+}
+
+#dataTable > div:nth-child(1n+2) > div:nth-child(3) p
+{
+     margin : 5px;
 }
