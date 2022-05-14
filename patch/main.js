@@ -211,3 +211,7 @@ document.addEventListener('keyup', pressEnter);
 // Gestion d'erreurs
 const errorText = document.getElementById("error");
 errorText.innerHTML = "Saisissez une ville.";
+
+// ATUI
+atuiKernel_FooterLastedited(11,5,2021);
+

@@ -1,8 +1,24 @@
-/* Metadata : 
-Auteur (github) : alcapitan
-Nom du module : Kernel ATUI
-Version : 0.2
-*/
+/* Metadata */
+
+const atuiKernel_Metadata = {
+     name : "ATUI",
+     author : "alcapitan (on GitHub)",
+     version : "developer branch",
+     website : "https://github.com/alcapitan/atui",
+}
+atuiKernel_MetadataDisplay(atuiKernel_Metadata);
+
+
+/* Metadata display */
+
+function atuiKernel_MetadataDisplay(infos)
+{
+     console.group("Metadata of " + infos["name"]);
+     console.log("Author : " + infos["author"]);
+     console.log("Version : " + infos["version"]);
+     console.log("Website : " + infos["website"]);
+     console.groupEnd();
+}
 
 /* Height carousel */
 
@@ -18,6 +34,26 @@ if (document.documentElement.clientWidth > 767)
 atuiKernel_Carousel.style.paddingTop = atuiKernel_HeaderAside.clientHeight + "px";
 
 
+/* Footer info */
+
+function atuiKernel_FooterLastedited(day,month,year)
+{
+     var atuiKernel_FooterInfo = document.getElementById("atuiKernel_FooterInfo");
+
+     var atuiKernel_FooterInfoBased = document.createElement("a");
+     atuiKernel_FooterInfoBased.setAttribute('src',atuiKernel_Metadata["website"]);
+     atuiKernel_FooterInfoBased.setAttribute('target','_blank');
+     atuiKernel_FooterInfoBased.innerHTML = "Ce site est basé sur " + atuiKernel_Metadata["name"] + " " + atuiKernel_Metadata["version"] + ", en savoir plus...";
+     atuiKernel_FooterInfo.appendChild(atuiKernel_FooterInfoBased);
+
+     var atuiKernel_FooterInfoLasteditedText = document.createElement("p");
+     var atuiKernel_FooterInfoLasteditedConvertMonth = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+     month = atuiKernel_FooterInfoLasteditedConvertMonth[month-1];
+     atuiKernel_FooterInfoLasteditedText.innerHTML = 'Dernière modification le ' + day + ' ' + month + ' ' + year;
+     atuiKernel_FooterInfo.insertBefore(atuiKernel_FooterInfoLasteditedText,atuiKernel_FooterInfo.firstChild);
+}
+
+
 /* Notifications */
 
 function atuiKernel_NotificationClose(element)
@@ -26,7 +62,7 @@ function atuiKernel_NotificationClose(element)
 }
 
 var atuiKernel_Notification = document.getElementById("atuiKernel_Notification");
-// Types availables : normal, alert, caution, confirmation, information, insertion
+// Types available : normal, alert, caution, confirmation, information, insertion
 function atuiKernel_NotificationDisplay(type,buttons,actions,title,text)
 {
      // Boite notification
@@ -62,7 +98,7 @@ function atuiKernel_NotificationDisplay(type,buttons,actions,title,text)
      var atuiKernel_NotificationElementText = document.createElement('p');
      atuiKernel_NotificationElementText.textContent = text;
 
-     // Bouttons d'actions
+     // Boutons d'actions
      if (buttons == 'default')
      {
           if (type == 'normal')
@@ -167,11 +203,11 @@ if (!atuiKernel_ToolsSettingsDisplaymodeStatus)
 }
 
 
-/* Selector */
+/* Context Menu */
 
-function atuiKernel_ToolsSelectorDisplay(element,wish)
+function atuiKernel_ToolsContextmenuDisplay(element,wish)
 {
-     cible = element.childNodes[3]; /* Selecteur */
+     cible = element.childNodes[3]; /* Sélecteur */
      element = element.childNodes[1]; /* Récepteur */
      if (wish == false)
      {
@@ -207,14 +243,14 @@ function atuiKernel_ToolsSelectorDisplay(element,wish)
      }
 }
 
-function atuiKernel_ToolsSelector(cible)
+function atuiKernel_ToolsContextmenu(cible)
 {
-     document.getElementById(cible).addEventListener("mouseenter",function(){atuiKernel_ToolsSelectorDisplay(this,true);});
-     document.getElementById(cible).addEventListener("mouseleave",function(){atuiKernel_ToolsSelectorDisplay(this,false);});     
+     document.getElementById(cible).addEventListener("mouseenter",function(){atuiKernel_ToolsContextmenuDisplay(this,true);});
+     document.getElementById(cible).addEventListener("mouseleave",function(){atuiKernel_ToolsContextmenuDisplay(this,false);});     
 }
 
-atuiKernel_ToolsSelector("atuiKernel_NavigatorImg");
-atuiKernel_ToolsSelector("atuiKernel_NavigatorText");
+atuiKernel_ToolsContextmenu("atuiKernel_NavigatorImg");
+atuiKernel_ToolsContextmenu("atuiKernel_NavigatorText");
 
 
 /* Global Panel */
