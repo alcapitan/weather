@@ -19,22 +19,11 @@ function atuiSearchservice_HeaderGenerateinfo(element)
      atuiSearchservice_HeaderGenerateinfoRecentsearchesContainer.textContent = "";
      for (let counter in atuiSearchservice_HeaderGenerateinfoRecentsearches)
      {
-          var atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlink = document.createElement("a");
-          var atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlinkText = document.createTextNode(atuiSearchservice_HeaderGenerateinfoRecentsearches[counter][0]);
+          const atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlink = document.createElement("a");
+          const atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlinkText = document.createTextNode(atuiSearchservice_HeaderGenerateinfoRecentsearches[counter][0]);
           atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlink.appendChild(atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlinkText);
           atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlink.setAttribute("href",atuiSearchservice_HeaderGenerateinfoRecentsearches[counter][1]);
           atuiSearchservice_HeaderGenerateinfoRecentsearchesContainer.appendChild(atuiSearchservice_HeaderGenerateinfoRecentsearchesNewlink);
-     }
-     /* Suggested searches */
-     atuiSearchservice_HeaderGenerateinfoSuggestedsearchesContainer = element.childNodes[3].childNodes[3];
-     atuiSearchservice_HeaderGenerateinfoSuggestedsearchesContainer.textContent = "";
-     for (let counter in atuiSearchservice_HeaderGenerateinfoSuggestedsearches)
-     {
-          var atuiSearchservice_HeaderGenerateinfoSuggestedsearchesNewlink = document.createElement("a");
-          var atuiSearchservice_HeaderGenerateinfoSuggestedsearchesNewlinkText = document.createTextNode(atuiSearchservice_HeaderGenerateinfoSuggestedsearches[counter][0]);
-          atuiSearchservice_HeaderGenerateinfoSuggestedsearchesNewlink.appendChild(atuiSearchservice_HeaderGenerateinfoSuggestedsearchesNewlinkText);
-          atuiSearchservice_HeaderGenerateinfoSuggestedsearchesNewlink.setAttribute("href",atuiSearchservice_HeaderGenerateinfoRecentsearches[counter][1]);
-          atuiSearchservice_HeaderGenerateinfoSuggestedsearchesContainer.appendChild(atuiSearchservice_HeaderGenerateinfoSuggestedsearchesNewlink);
      }
 }
 
@@ -45,22 +34,36 @@ function atuiSearchservice_HeaderDevelop(element,wish)
      searchBarHeaderExtras = element.childNodes[3];
      if (!wish)
      {
-          element.style.position = "relative";
-          element.style.backgroundColor = "transparent";
-          element.style.boxShadow = "none";
           searchBarHeaderBar.style.width = "100%";
           searchBarHeaderBar.style.margin = "0px";
+          if (document.documentElement.clientWidth < 767)
+          {
+               searchBarHeaderBar.style.backgroundColor = "transparent";
+               searchBarHeaderBar.childNodes[1].childNodes[2].style.display = "none";
+          }
           searchBarHeaderExtras.style.display = "none";
+          element.style.position = "initial";
+          element.style.left = "";
+          element.style.right = "";
+          element.style.backgroundColor = "transparent";
+          element.style.boxShadow = "none";
      }
      else
      {
-          element.style.position = "absolute";
-          element.style.backgroundColor = "var(--atuiKernel_ToolsSettingsAccentcolor)";
-          element.style.boxShadow = "var(--atuiKernel_Shadow)";
           searchBarHeaderBar.style.width = "calc(100% - 20px)";
           searchBarHeaderBar.style.margin = "10px";
-          atuiSearchservice_HeaderGenerateinfo(searchBarHeaderExtras);
           searchBarHeaderExtras.style.display = "block";
+          element.style.position = "absolute";
+          if (document.documentElement.clientWidth < 767)
+          {
+               searchBarHeaderBar.style.backgroundColor = "var(--atuiKernel_ToolsSettingsDisplaymodeColor)";
+               searchBarHeaderBar.childNodes[1].childNodes[1].style.display = "inline";
+               element.style.left = "40px";
+               element.style.right = "40px";
+          }
+          element.style.backgroundColor = "var(--atuiKernel_ToolsSettingsAccentcolor)";
+          element.style.boxShadow = "var(--atuiKernel_Shadow)";
+          atuiSearchservice_HeaderGenerateinfo(searchBarHeaderExtras);
      }
 }
 
