@@ -39,7 +39,7 @@ function atuiSearchservice_HeaderDevelop(element,wish)
           if (document.documentElement.clientWidth < 767)
           {
                searchBarHeaderBar.style.backgroundColor = "transparent";
-               searchBarHeaderBar.childNodes[1].childNodes[2].style.display = "none";
+               searchBarHeaderBar.childNodes[1].childNodes[1].style.display = "none";
           }
           searchBarHeaderExtras.style.display = "none";
           element.style.position = "initial";
