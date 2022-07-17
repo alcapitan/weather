@@ -1,14 +1,5 @@
 /* Global */
 
-:root
-{
-     --atuiKernel_ToolsSettingsAccentcolor : rgb(51, 153, 102);
-     --atuiKernel_ToolsSettingsAccentcolorOpacity : rgba(51, 153, 102, 0.8);
-}
-
-
-/* Divers */
-
 .atuiKernel_ToolsCarousel /* Carrousel */
 {
      height : auto !important;

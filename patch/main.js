@@ -1,4 +1,13 @@
-// Lance une requête quand touche Entrée est pressé
+/* Patch ATUI */
+atuiKernel_FooterLastedited(17,7,2022);
+atuiKernel_ColorschemeGeneratorAuto([64, 191, 128]);
+
+
+/* Add reactions to run process */
+const searchButton = document.getElementById("atuiSearchservices_Submit");
+searchButton.addEventListener('click',createRequest);
+
+document.addEventListener('keyup', pressEnter);
 function pressEnter(e)
 {
      if (e.code == "Enter")
@@ -7,7 +16,10 @@ function pressEnter(e)
      }
 }
 
-// Affiche message d'erreur
+
+/* Errors */
+const errorText = document.getElementById("error");
+errorText.innerHTML = "Saisissez une ville.";
 function error(message)
 {
      document.getElementsByClassName("atuiKernel_ToolsCarousel")[0].style.background = "radial-gradient(rgb(51, 204, 204),rgb(0, 204, 153))";
@@ -18,7 +30,7 @@ function error(message)
 }
 
 
-// Récupère la ville entrée pour envoyer la requête
+/* Get the searched city */
 function createRequest()
 {
      if (navigator.onLine == false)
@@ -26,15 +38,17 @@ function createRequest()
           error("Vous n'êtes pas connecté à Internet.");
           return
      }
-     let inputCity = document.getElementsByName("atuiSearchServices_Request")[0];
+     let inputCity = document.getElementById("atuiSearchservices_Input");
      inputCity = inputCity.value;
      console.info(inputCity);
      sendRequest(inputCity);
 }
 
-// Exécute les requêtes et renvoie des données lisibles pour l'affichage
+
+/* Manage request and organize results */
 async function sendRequest(city)
 {
+     error("En attente de l'API...");
      const token = "3a319049d37a193ddb11713cf607d4a27d5f5e0dd80f9214ccb97aeeddae2a6a";
      // Header des requêtes
      const requestHeader = new Headers({  
@@ -81,10 +95,12 @@ async function sendRequest(city)
           result[i]["probarain"] = contentInsee.forecast[i]["probarain"];
           result[i]["rr10"] = contentInsee.forecast[i]["rr10"];
      }
+     console.log(result);
      updateDisplay(result);
 }
 
-// Converti les numéros de date (JavaScript) en string
+
+/* Convert dates from number to string */
 function convertDay(num)
 {
      const transform = {0:'Dimanche',1:'Lundi',2:'Mardi',3:'Mercredi',4:'Jeudi',5:'Vendredi',6:'Samedi'};
@@ -97,18 +113,20 @@ function convertMonth(num)
      return transform[num]
 }
 
-// Converti les numéros de l'API en texte fonctionnel pour l'affichage
+
+/* Converti API's numbers to string for user */
 function convertInfos(sky)
 {
      const transform = {0:["sun","ensoleillé"],1:["partly-cloudy","éclaircies"],2:["partly-cloudy","éclaircies"],3:["clouds","nuageux"],4:["clouds","nuageux"],5:["clouds","nuageux"],6:["haze","brouillard"],7:["haze","brouillard"],10:["rain","pluie fine"],11:["heavy-rain","pluie"],12:["torrential-rain","tempête pluvieuse"],13:["rain","pluie fine"],14:["heavy-rain","pluie"],15:["torrential-rain","tempête pluvieuse"],16:["haze","brouillard"],20:["light-snow","neige légère"],21:["snow","neige"],22:["snow-storm","tempête de neige"],30:["rain","pluie fine"],31:["heavy-rain","pluie"],32:["torrential-rain","tempête pluvieuse"],40:["rain","pluie fine"],41:["heavy-rain","pluie"],42:["torrential-rain","tempête pluvieuse"],43:["rain","pluie fine"],44:["heavy-rain","pluie"],45:["torrential-rain","tempête pluvieuse"],46:["rain","pluie fine"],47:["heavy-rain","pluie"],48:["torrential-rain","tempête pluvieuse"],60:["light-snow","neige légère"],61:["snow","neige"],62:["snow-storm","tempête de neige"],63:["light-snow","neige légère"],64:["snow","neige"],65:["snow-storm","tempête de neige"],66:["light-snow","neige légère"],67:["snow","neige"],68:["snow-storm","tempête de neige"],70:["rain","pluie fine"],71:["heavy-rain","pluie"],72:["torrential-rain","tempête pluvieuse"],73:["rain","pluie fine"],74:["heavy-rain","pluie"],75:["torrential-rain","tempête pluvieuse"],76:["rain","pluie fine"],77:["heavy-rain","pluie"],78:["torrential-rain","tempête pluvieuse"],100:["cloud-lighting","orages"],100:["cloud-lighting","orages"],100:["cloud-lighting","orages"],100:["cloud-lighting","orages"],100:["cloud-lighting","orages"],100:["cloud-lighting","orages"],100:["cloud-lighting","orages"],101:["cloud-lighting","orages"],102:["cloud-lighting","orages"],103:["cloud-lighting","orages"],104:["cloud-lighting","orages"],105:["cloud-lighting","orages"],106:["cloud-lighting","orages"],107:["cloud-lighting","orages"],108:["cloud-lighting","orages"],120:["cloud-lighting","orages"],121:["cloud-lighting","orages"],122:["cloud-lighting","orages"],123:["cloud-lighting","orages"],124:["cloud-lighting","orages"],125:["cloud-lighting","orages"],126:["cloud-lighting","orages"],127:["cloud-lighting","orages"],128:["cloud-lighting","orages"],130:["cloud-lighting","orages"],131:["cloud-lighting","orages"],132:["cloud-lighting","orages"],133:["cloud-lighting","orages"],134:["cloud-lighting","orages"],135:["cloud-lighting","orages"],136:["cloud-lighting","orages"],137:["cloud-lighting","orages"],138:["cloud-lighting","orages"],140:["cloud-lighting","orages"],141:["cloud-lighting","orages"],142:["cloud-lighting","orages"],210:["rain","pluie fine"],211:["heavy-rain","pluie"],212:["torrential-rain","tempête pluvieuse"],220:["light-snow","neige légère"],221:["snow","neige"],222:["snow-storm","tempête de neige"],230:["rain","pluie fine"],231:["heavy-rain","pluie"],232:["torrential-rain","tempête pluvieuse"],235:["hail","grêle"]};
      return transform[sky]
 }
 
-// Modifie l'affichage avec les infos données
+
+/* Update webpage with data */
 function updateDisplay(infos)
 {
      // Affiche les résultats
-     errorsContainer.style.display = "none";
+     errorText.style.display = "none";
      document.getElementById("today").style.display = "flex";
      document.getElementById("dataTable").style.display = "grid";
 
@@ -202,16 +220,4 @@ function updateDisplay(infos)
           j = j + 2;  
      }
 }
-
-// Démarre le processus par le lancement de la recherche
-const searchButton = document.getElementById("searchBtn");
-searchButton.addEventListener('click',createRequest);
-document.addEventListener('keyup', pressEnter);
-
-// Gestion d'erreurs
-const errorText = document.getElementById("error");
-errorText.innerHTML = "Saisissez une ville.";
-
-// ATUI
-atuiKernel_FooterLastedited(29,6,2021);
 

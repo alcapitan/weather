@@ -11,6 +11,7 @@
      font-family: var(--atuiKernel_FontsTitle);
      font-size : 1.4rem;
      margin : 0 15px;
+     color : var(--atuiKernel_ColorschemeOBF);
 }
 
 .atuiKernel_ToolsContextmenu > p:hover, .atuiKernel_ToolsContextmenu > p:active
@@ -20,18 +21,20 @@
      transition: font-weight 500ms;
 }
 
-.atuiKernel_ToolsContextmenu aside 
+.atuiKernel_ToolsContextmenu aside,
+.atuiKernel_ToolsInfotip aside
 {
      position : fixed;
      width : 280px;
      visibility: hidden;
-     background-color: var(--atuiKernel_ToolsSettingsDisplaymodeColorOpacity);
+     background-color: var(--atuiKernel_ColorschemeBB1);
      backdrop-filter: var(--atuiKernel_Blur);
      border-radius : var(--atuiKernel_Borderradius);
      box-shadow: var(--atuiKernel_Shadow);
      top : 0;
      left : 0;
      z-index : 1;
+     word-wrap: anywhere;
 }
 
 .atuiKernel_ToolsContextmenu aside a
@@ -52,8 +55,7 @@
 
 .atuiKernel_ToolsContextmenu aside a div:hover
 {
-     background-color : var(--atuiKernel_ToolsSettingsAccentcolorOpacity);
-     transition: background-color 500ms;
+     background-color : var(--atuiKernel_ColorschemeBA3);
 }
 
 .atuiKernel_ToolsContextmenu aside a div
@@ -70,9 +72,9 @@
 {
      font-size : 1.25rem;
      margin : 0;
-     color : black;
+     color : var(--atuiKernel_ColorschemeOBF);
      width : calc(100% - 38px);
-     overflow-wrap: anywhere;
+     word-wrap: anywhere;
 }
 
 .atuiKernel_ToolsContextmenu aside a div img
@@ -85,9 +87,23 @@
 
 .atuiKernel_ToolsContextmenu aside hr
 {
-     background-color: var(--atuiKernel_ToolsSettingsAccentcolor);
+     background-color: var(--atuiKernel_ColorschemeOA4);
      height : 2px;
      margin : 5px 0;
      border : 0;
+}
+
+
+/* Toolstip */
+
+.atuiKernel_ToolsInfotip aside
+{
+     padding : 20px;
+}
+
+.atuiKernel_ToolsInfotip aside *
+{
+     margin : 0;
+     font-size : 1.1rem;
 }
 

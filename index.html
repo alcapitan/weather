@@ -32,20 +32,13 @@
                          </div>
                          <div id="atuiKernel_HeaderBlockCenter">
                               <nav id="atuiSearchservices_Header">
-                                   <div>
-                                        <form>
-                                             <input name="atuiSearchservices_Request" type="text" placeholder="Recherchez une ville">
-                                             <button id="searchBtn">
-                                                  <img src="atui/SearchService/medias/search.png" alt="Rechercher">
-                                             </button>
-                                        </form>
+                                   <div id="atuiSearchservices_HeaderBar">
+                                        <div>
+                                             <input id="atuiSearchservices_Input" name="atuiSearchservices_Request" type="text" placeholder="Rechercher une ville" required>
+                                             <input id="atuiSearchservices_Submit" type="image" src="atui/SearchService/medias/search.png" alt="Rechercher">
+                                        </div>
                                    </div>
-                                   <aside>
-                                        <article>
-                                             <p>Recherches récentes</p>
-                                             <div>
-                                             </div>
-                                        </article>
+                                   <aside id="atuiSearchservices_HeaderPropositions">
                                    </aside>
                               </nav>
                          </div>
@@ -173,17 +166,16 @@
                     <p>Les données proviennent de l'<a href="https://api.meteo-concept.com/" target="_blank">API de Météo Concept</a>. </p>
                </div>
           </section>
-          <footer>
-               <a href="#atuiKernel_Header" id="atuiKernel_FooterScrolltop">
-                    <img alt="Remonter en haut de la page" src="atui/kernel/medias/backUp.png">
-               </a>
-               <div id="atuiKernel_ToolsContact">
-                    <p>Contacts</p>
-                    <div id="atuiKernel_ToolsContactBroad">
-     
-                    </div>
+          <footer id="atuiKernel_FooterContrast">
+               <div id="atuiKernel_FooterScrolltop">
+                    <a href="#">
+                         <img alt="Revenir au début" src="atui/kernel/medias/scrolltop.png">
+                    </a>
+               </div>
+               <div class="atuiKernel_FooterContentsRow">
+                    <h3>Contacts</h3>
                     <div id="atuiKernel_ToolsContactCompact">
-                         <a href="https://github.com/alcapitan/meteo"><img src="atui/kernel/medias/github.png" alt="Répertoire GitHub de AT Weather"></a>
+                         <a href="https://github.com/alcapitan/atui"><img src="atui/kernel/medias/github.png" alt="Allez voir mon compte GitHub. "></a>
                     </div>
                </div>
                <div id="atuiKernel_FooterInfo">
