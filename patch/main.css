@@ -1,0 +1,32 @@
+@import url('./table.css');
+@import url('./today.css');
+
+
+/* Global */
+
+:root
+{
+     --colorLowTemp : rgb(0, 92, 230);
+     --colorHighTemp : rgb(230, 46, 0);
+}
+
+body > section /* Section */
+{
+     display : flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+
+/* Temperature colors */
+
+.temperature p:nth-child(1) /* Coldest */
+{
+     color : var(--colorLowTemp);
+}
+
+.temperature p:nth-child(2) /* Hottest */
+{
+     color : var(--colorHighTemp);
+}
+

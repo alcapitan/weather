@@ -47,7 +47,6 @@ function atuiSearchservices_HeaderDevelop(element,wish)
           }
           element.style.backgroundColor = "var(--atuiKernel_ColorschemeOA3)";
           element.style.boxShadow = "var(--atuiKernel_Shadow)";
-          atuiSearchservices_HeaderPropositionsGenerate();
      }
 }
 
@@ -57,21 +56,21 @@ document.getElementById("atuiSearchservices_Header").addEventListener("mouseleav
 
 /* Propositions */
 
-const atuiSearchservices_HeaderPropositionsRecentsInfos = [["satisfied drop room","https://www.at.ma"],["era assumption grow","https://www.at.ma"],["score wheel shaft","https://www.at.ma"],["veil crossing inhabitant","https://www.at.ma"],["ratio spoil freedom","https://www.at.ma"]]
-const atuiSearchservices_HeaderPropositionsSuggestedInfos = [["charter gutter merit","https://www.at.ma"],["meaning presidency maze","https://www.at.ma"],["different federation zone","https://www.at.ma"],["realize praise doctor","https://www.at.ma"],["network atmosphere last","https://www.at.ma"]]
+const atuiSearchservices_HeaderPropositionsRecentsInfos = [["satisfied drop room","https://www.at.ma"],["era assumption grow","https://www.at.ma"],["score wheel shaft","https://www.at.ma"],["veil crossing inhabitant","https://www.at.ma"],["ratio spoil freedom","https://www.at.ma"]];
+const atuiSearchservices_HeaderPropositionsSuggestedInfos = [["charter gutter merit","https://www.at.ma"],["meaning presidency maze","https://www.at.ma"],["different federation zone","https://www.at.ma"],["realize praise doctor","https://www.at.ma"],["network atmosphere last","https://www.at.ma"]];
 
-function atuiSearchservices_HeaderPropositionsGenerate()
+function atuiSearchservices_HeaderPropositionsGenerate(recent,suggested)
 {
      try /* Recent searches */
      {
           atuiSearchservices_HeaderPropositionsRecentsInfosContainer = document.getElementById("atuiSearchservices_HeaderPropositionsRecentsContainer");
-          atuiSearchservices_HeaderPropositionsRecentsInfosContainer.textContent = "";
-          for (let counter in atuiSearchservices_HeaderPropositionsRecentsInfos)
+          atuiSearchservices_HeaderPropositionsRecentsInfosContainer.innerHTML = "";
+          for (let counter in recent)
           {
                const atuiSearchservices_HeaderPropositionsRecentsInfosNewlink = document.createElement("a");
-               const atuiSearchservices_HeaderPropositionsRecentsInfosNewlinkText = document.createTextNode(atuiSearchservices_HeaderPropositionsRecentsInfos[counter][0]);
+               const atuiSearchservices_HeaderPropositionsRecentsInfosNewlinkText = document.createTextNode(recent[counter][0]);
                atuiSearchservices_HeaderPropositionsRecentsInfosNewlink.appendChild(atuiSearchservices_HeaderPropositionsRecentsInfosNewlinkText);
-               atuiSearchservices_HeaderPropositionsRecentsInfosNewlink.setAttribute("href",atuiSearchservices_HeaderPropositionsRecentsInfos[counter][1]);
+               atuiSearchservices_HeaderPropositionsRecentsInfosNewlink.setAttribute("href",recent[counter][1]);
                atuiSearchservices_HeaderPropositionsRecentsInfosContainer.appendChild(atuiSearchservices_HeaderPropositionsRecentsInfosNewlink);
           }
      }
@@ -79,14 +78,16 @@ function atuiSearchservices_HeaderPropositionsGenerate()
      try /* Suggested searches */
      {
           atuiSearchservices_HeaderPropositionsSuggestedInfosContainer = document.getElementById("atuiSearchservices_HeaderPropositionsSuggestedContainer");
-          atuiSearchservices_HeaderPropositionsSuggestedInfosContainer.textContent = "";
-          for (let counter in atuiSearchservices_HeaderPropositionsSuggestedInfos)
+          atuiSearchservices_HeaderPropositionsSuggestedInfosContainer.innerHTML = "";
+          for (let counter in suggested)
           {
-               const atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink = document.createElement("a");
-               const atuiSearchservices_HeaderPropositionsSuggestedInfosNewlinkText = document.createTextNode(atuiSearchservices_HeaderPropositionsSuggestedInfos[counter][0]);
-               atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink.appendChild(atuiSearchservices_HeaderPropositionsSuggestedInfosNewlinkText);
-               atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink.setAttribute("href",atuiSearchservices_HeaderPropositionsRecentsInfos[counter][1]);
-               atuiSearchservices_HeaderPropositionsSuggestedInfosContainer.appendChild(atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink);
+               if (suggested[counter] != "")
+               {
+                    const atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink = document.createElement("p");
+                    atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink.innerHTML = suggested[counter][0];
+                    atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink.addEventListener("click",function(){sendRequest(suggested[counter][1])});
+                    atuiSearchservices_HeaderPropositionsSuggestedInfosContainer.appendChild(atuiSearchservices_HeaderPropositionsSuggestedInfosNewlink);
+               }
           }
      }
      catch{}

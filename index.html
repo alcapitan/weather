@@ -13,9 +13,7 @@
           <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Red+Hat+Display&display=swap" rel="stylesheet">
           <link rel="stylesheet" type="text/css" href="atui/kernel/main.css" >
           <link rel="stylesheet" type="text/css" href="atui/SearchService/main.css">
-          <link rel="stylesheet" type="text/css" href="patch/global.css">
-          <link rel="stylesheet" type="text/css" href="patch/today.css">
-          <link rel="stylesheet" type="text/css" href="patch/table.css">
+          <link rel="stylesheet" type="text/css" href="patch/main.css">
           <link rel="icon" type="img/png" href="patch/icons/logo.png">
      </head>
      <body>
@@ -39,6 +37,11 @@
                                         </div>
                                    </div>
                                    <aside id="atuiSearchservices_HeaderPropositions">
+                                        <article id="atuiSearchservices_HeaderPropositionsSuggested">
+                                             <p>Suggestions</p>
+                                             <div id="atuiSearchservices_HeaderPropositionsSuggestedContainer">
+                                             </div>
+                                        </article>
                                    </aside>
                               </nav>
                          </div>
@@ -51,29 +54,29 @@
                </aside>
                <article class="atuiKernel_ToolsCarousel">
                     <div id="today">
-                         <div id="todayFirstColumn">
-                              <img src="patch/icons/rain.png" />
-                              <div>
-                                   <p>0%</p>
-                                   <p>0mm</p>
-                              </div>
-                         </div>
-                         <div id="todaySecondColumn">
-                              <p>Orange (84100)</p>
-                              <div class="temperature">
-                                   <p>12°C</p>
-                                   <p>26°C</p>
-                              </div>
-                              <div>
-                                   <img src="patch/icons/wind-direction.png" />
+                         <p id="cityToday">Ville</p>
+                         <div id="information">
+                              <div id="skyToday">
+                                   <img src="patch/icons/sun.png" id="skyTodayImg" />
                                    <div>
-                                        <p>13km/h</p>
-                                        <p>28km/h</p>
+                                        <p id="skyTodayProbarain">X%</p>
+                                        <p id="skyTodayAccumurain">Xmm</p>
+                                   </div>
+                              </div>
+                              <div id="tempToday" class="temperature">
+                                   <p id="tempTodayMin">X°C</p>
+                                   <p id="tempTodayMax">X°C</p>
+                              </div>
+                              <div id="windToday">
+                                   <img src="patch/icons/wind-direction.png" id="windTodayImg" />
+                                   <div>
+                                        <p id="windTodayMin">Xkm/h</p>
+                                        <p id="windTodayMax">Xkm/h</p>
                                    </div>
                               </div>
                          </div>
                     </div>
-                    <p id="error">Texte d'une erreur</p>
+                    <p id="log"></p>
                </article>
           </header>
           <section>

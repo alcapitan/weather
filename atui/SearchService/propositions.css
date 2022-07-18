@@ -30,12 +30,13 @@
      margin : 15px;
 }
 
-#atuiSearchservices_HeaderPropositionsRecentsContainer > a,
-#atuiSearchservices_HeaderPropositionsSuggestedContainer > a
+#atuiSearchservices_HeaderPropositionsRecentsContainer > *,
+#atuiSearchservices_HeaderPropositionsSuggestedContainer > *
 /* Propositions */
 {
      color : var(--atuiKernel_ColorschemeOBF);;
      display : block;
      padding : 5px 0;
+     cursor : default;
 }
 
