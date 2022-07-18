@@ -1,4 +1,4 @@
-logo.png > https://img.icons8.com/fluency/60/weather.png
+logo.png > https://img.icons8.com/fluency/170/weather.png
 clouds.png > https://img.icons8.com/fluency/200/clouds.png
 cloud-lighting.png > https://img.icons8.com/fluency/200/cloud-lighting.png
 hail.png > https://img.icons8.com/fluency/200/hail.png
