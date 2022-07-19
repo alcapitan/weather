@@ -1,5 +1,5 @@
 /* ATUI Features */
-atuiKernel_FooterLastedited(18,7,2022);
+atuiKernel_FooterLastedited(19,7,2022);
 atuiKernel_ColorschemeGeneratorAuto([64, 191, 128]);
 
 
@@ -22,11 +22,11 @@ const logText = document.getElementById("log");
 logText.innerHTML = "Recherchez une ville en France métropolitaine.";
 function log(message)
 {
-     document.getElementById("atuiKernel_Header").style.background = "auto";
+     document.getElementById("atuiKernel_Header").style.background = "var(--atuiKernel_ColorschemeOA7)";
      logText.innerHTML = message;
      logText.style.display = "block";
      document.getElementById("today").style.display = "none";
-     document.getElementById("dataTable").style.display = "none";
+     document.getElementById("table").style.display = "none";
 }
 
 
@@ -58,10 +58,12 @@ const token = "8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f"
 
 async function updateSuggestions(search)
 {
+     document.getElementById("atuiKernel_Header").style.background = "var(--atuiKernel_ColorschemeOA7)";
      log("Recherche de villes (0/2)");
+     let response;
      try
      {
-          const response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${search}`,
+          response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${search}`,
           {
                method: 'GET',
                headers: requestHeader,
@@ -98,10 +100,12 @@ async function updateSuggestions(search)
 async function sendRequest(city)
 {
      // Recherche des villes
+     document.getElementById("atuiKernel_Header").style.background = "var(--atuiKernel_ColorschemeOA7)";
      log("Recherche des villes (0/3)");
+     let response;
      try
      {
-          const response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${city}`,
+          response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${city}`,
           {
                method: 'GET',
                headers: requestHeader,
@@ -124,7 +128,7 @@ async function sendRequest(city)
      const insee = content.cities[0]["insee"]; // Révèle l'INSEE de la ville en premier résultat
      try
      {
-          const responseInsee = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=${insee}`,
+          response = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=${insee}`,
           {
                method: 'GET',
                headers: requestHeader,
@@ -135,11 +139,11 @@ async function sendRequest(city)
      {
           log("Le service de l'API est indisponible.");
      }
-     let contentInsee = await responseInsee.json(); // Converti la réponse en JSON
+     let contentInsee = await response.json(); // Converti la réponse en JSON
 
      // Organisation des données
      log("Traitement (2/3)");
-     document.getElementById("cityToday").textContent = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
+     city = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
      let result = []; // Créé un objet avec toutes les infos nécessaires
      for (i=0;i<8;i++)
      {
@@ -156,8 +160,8 @@ async function sendRequest(city)
           result[i]["probarain"] = contentInsee.forecast[i]["probarain"];
           result[i]["rr10"] = contentInsee.forecast[i]["rr10"];
      }
-     console.log(result);
-     updateWebpage(result);
+     console.info(result);
+     updateWebpage(result,city);
 }
 
 
@@ -293,20 +297,154 @@ function convertInfos(sky)
      return transform[sky]
 }
 
+/*updateWebpage(
+[
+     {
+         "date": [
+             "Mardi",
+             19,
+             "Juillet"
+         ],
+         "kmwind": 10,
+         "kmgust": 44,
+         "dirwind": 196,
+         "weather": 0,
+         "temp": 30,
+         "tempmin": 24,
+         "tempmax": 36,
+         "probarain": 10,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Mercredi",
+             20,
+             "Juillet"
+         ],
+         "kmwind": 10,
+         "kmgust": 41,
+         "dirwind": 198,
+         "weather": 1,
+         "temp": 30,
+         "tempmin": 24,
+         "tempmax": 36,
+         "probarain": 10,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Jeudi",
+             21,
+             "Juillet"
+         ],
+         "kmwind": 15,
+         "kmgust": 31,
+         "dirwind": 347,
+         "weather": 0,
+         "temp": 31,
+         "tempmin": 24,
+         "tempmax": 38,
+         "probarain": 0,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Vendredi",
+             22,
+             "Juillet"
+         ],
+         "kmwind": 15,
+         "kmgust": 35,
+         "dirwind": 173,
+         "weather": 2,
+         "temp": 31,
+         "tempmin": 22,
+         "tempmax": 40,
+         "probarain": 0,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Samedi",
+             23,
+             "Juillet"
+         ],
+         "kmwind": 10,
+         "kmgust": 26,
+         "dirwind": 227,
+         "weather": 3,
+         "temp": 29,
+         "tempmin": 23,
+         "tempmax": 35,
+         "probarain": 30,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Dimanche",
+             24,
+             "Juillet"
+         ],
+         "kmwind": 15,
+         "kmgust": 23,
+         "dirwind": 358,
+         "weather": 0,
+         "temp": 28.5,
+         "tempmin": 22,
+         "tempmax": 35,
+         "probarain": 20,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Lundi",
+             25,
+             "Juillet"
+         ],
+         "kmwind": 15,
+         "kmgust": 24,
+         "dirwind": 330,
+         "weather": 0,
+         "temp": 29.5,
+         "tempmin": 23,
+         "tempmax": 36,
+         "probarain": 20,
+         "rr10": 0
+     },
+     {
+         "date": [
+             "Mardi",
+             26,
+             "Juillet"
+         ],
+         "kmwind": 15,
+         "kmgust": 24,
+         "dirwind": 335,
+         "weather": 1,
+         "temp": 28.5,
+         "tempmin": 23,
+         "tempmax": 34,
+         "probarain": 30,
+         "rr10": 0
+     }
+]);*/
+
 
 /* Update webpage with data */
-function updateWebpage(infos)
+function updateWebpage(infos,city)
 {
      logText.style.display = "none";
      
+
      /* Today */
      document.getElementById("today").style.display = "flex";
+     document.getElementById("cityToday").textContent = city;
 
      // Temperature
      let temperatureElementMin = document.getElementById("tempTodayMin");
-     temperatureElementMin.textContent = "Min : " + infos[0]["tempmin"] + " °C";
+     temperatureElementMin.textContent = infos[0]["tempmin"] + " °C";
      let temperatureElementMax = document.getElementById("tempTodayMax");
-     temperatureElementMax.textContent = "Max : " + infos[0]["tempmax"] + " °C";
+     temperatureElementMax.textContent = infos[0]["tempmax"] + " °C";
      if (infos[0]["temp"] <= 5)
      {
           document.getElementById("atuiKernel_Header").style.background = "var(--veryCold)";
@@ -330,17 +468,27 @@ function updateWebpage(infos)
 
      // Sky
      let skyElementImage = document.getElementById("skyTodayImg");
-     skyElementImage.src = "medias/" + convertInfos(infos[0]["weather"])[0] + ".png";
+     skyElementImage.src = "patch/icons/" + convertInfos(infos[0]["weather"])[0] + ".png";
      skyElementImage.alt = "Icône " + convertInfos(infos[0]["weather"])[1];
      if (infos[0]["probarain"] > 0)
      {
-          document.getElementById('skyTodayProbarain').textContent = infos[0]["probarain"] + "%";
+          document.getElementById('skyTodayProbarain').style.display = "block";
+          document.getElementById('skyTodayProbarain').textContent = infos[0]["probarain"] + " %";
+     }
+     else
+     {
+          document.getElementById('skyTodayProbarain').style.display = "none";
      }
      if (infos[0]["rr10"] > 0)
      {
-          document.getElementById('skyTodayAccumurain').textContent = rainElementText.innerHTML + " | " + infos[0]["rr10"] + "mm";
+          document.getElementById('skyTodayAccumurain').style.display = "block";
+          document.getElementById('skyTodayAccumurain').textContent = infos[0]["rr10"] + " mm";
      }
-
+     else
+     {
+          document.getElementById('skyTodayAccumurain').style.display = "none";
+     }
+     
      // Wind
      let windElementImage = document.getElementById("windTodayImg");
      windElementImage.style.transform = "rotate(" + infos[0]["dirwind"] + "deg)";
@@ -349,53 +497,47 @@ function updateWebpage(infos)
      const gustElementText = document.getElementById("windTodayMax");
      gustElementText.textContent = infos[0]["kmgust"] + " km/h";
      
-     /* Three days */
-     //document.getElementById("dataTable").style.display = "grid";
-     /*let j = 1;
-     for (i=1;i<4;i++)
+
+     /* Table */
+     document.getElementById("table").style.display = "block";
+     const elementsTable = document.getElementsByClassName('nextDay');
+
+     for (i=0;i<elementsTable.length;i++)
      {
           // Date
-          let dateString = document.getElementById("threeDays").childNodes[j].childNodes[1];
-          dateString.innerHTML = infos[i]["date"][0] + " " + infos[i]["date"][1] + " " + infos[i]["date"][2];
-          // Sky
-          skyElementImage = document.getElementById("threeDays").childNodes[j].childNodes[3];
-          skyElementImage.src = "medias/" + convertInfos(infos[i]["weather"])[0] + ".png";
-          skyElementImage.alt = "Icône " + convertInfos(infos[i]["weather"])[1];
+          elementsTable[i].childNodes[1].innerHTML = "<p>" + infos[i]["date"][0] + " " + infos[i]["date"][1] + " " + infos[i]["date"][2] + "</p>";
+
+          // Sky & Rain
+          elementsTable[i].childNodes[3].childNodes[1].src = "patch/icons/" + convertInfos(infos[i]["weather"])[0] + ".png";
+          elementsTable[i].childNodes[3].childNodes[1].alt = "Icône " + convertInfos(infos[i]["weather"])[1];
+
+          if (infos[0]["probarain"] > 0)
+          {
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "block";
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[1].textContent = infos[0]["probarain"] + " %";
+          }
+          else
+          {
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "none";
+          }
+          if (infos[0]["rr10"] > 0)
+          {
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[3].style.display = "block";
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[3].textContent = infos[0]["rr10"] + " mm";
+          }
+          else
+          {
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[3].style.display = "none";
+          }
+
           // Temperature
-          temperatureElementMin = document.getElementById("threeDays").childNodes[j].childNodes[5].childNodes[1];
-          temperatureElementMin.innerHTML = infos[i]["tempmin"] + " °C";
-          temperatureElementMax = document.getElementById("threeDays").childNodes[j].childNodes[5].childNodes[3];
-          temperatureElementMax.innerHTML = infos[i]["tempmax"] + " °C";
+          elementsTable[i].childNodes[5].childNodes[1].textContent = infos[i]["tempmin"] + " °C";
+          elementsTable[i].childNodes[5].childNodes[3].textContent = infos[i]["tempmax"] + " °C";
+
           // Wind
-          windElementImage = document.getElementById("threeDays").childNodes[j].childNodes[7].childNodes[3];
-          windElementImage.style.transform = "rotate(" + infos[i]["dirwind"] + "deg)";
-          windElementText = document.getElementById("threeDays").childNodes[j].childNodes[7].childNodes[1];
-          windElementText.innerHTML = infos[i]["kmwind"] + " km/h";
-          j = j + 2;  
-     }*/
-     
-     /* Week */
-     /*j = 1;
-     for (i=4;i<8;i++)
-     {
-          // Date
-          let dateString = document.getElementById("week").childNodes[j].childNodes[1];
-          dateString.innerHTML = infos[i]["date"][0] + " " + infos[i]["date"][1] + " " + infos[i]["date"][2];
-          // Sky
-          skyElementImage = document.getElementById("week").childNodes[j].childNodes[3];
-          skyElementImage.src = "medias/" + convertInfos(infos[i]["weather"])[0] + ".png";
-          skyElementImage.alt = "Icône " + convertInfos(infos[i]["weather"])[1];
-          // Temperature
-          temperatureElementMin = document.getElementById("week").childNodes[j].childNodes[5].childNodes[1];
-          temperatureElementMin.innerHTML = infos[i]["tempmin"] + " °C";
-          temperatureElementMax = document.getElementById("week").childNodes[j].childNodes[5].childNodes[3];
-          temperatureElementMax.innerHTML = infos[i]["tempmax"] + " °C";
-          // Wind
-          windElementImage = document.getElementById("week").childNodes[j].childNodes[7].childNodes[3];
-          windElementImage.style.transform = "rotate(" + infos[i]["dirwind"] + "deg)";
-          windElementText = document.getElementById("week").childNodes[j].childNodes[7].childNodes[1];
-          windElementText.innerHTML = infos[i]["kmwind"] + " km/h";
-          j = j + 2;  
-     }*/
+          elementsTable[i].childNodes[7].childNodes[1].style.transform = "rotate(" + infos[i]["dirwind"] + "deg)";
+          elementsTable[i].childNodes[7].childNodes[3].childNodes[1].textContent = infos[i]["kmwind"] + " km/h";
+          elementsTable[i].childNodes[7].childNodes[3].childNodes[3].textContent = infos[i]["kmgust"] + " km/h";
+     }
 }
 

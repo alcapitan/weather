@@ -18,15 +18,36 @@ body > section /* Section */
 }
 
 
-/* Temperature colors */
+/* Common */
 
-.temperature p:nth-child(1) /* Coldest */
+.temperature p:first-child /* Coldest temperature */
 {
      color : var(--colorLowTemp);
 }
 
-.temperature p:nth-child(2) /* Hottest */
+.temperature p:last-child /* Hottest temperature */
 {
      color : var(--colorHighTemp);
+}
+
+.rain p,
+.wind p
+{
+     color : var(--atuiKernel_ColorschemeOB6);
+}
+
+.rain p:nth-child(1),
+.wind p:nth-child(1)
+/* First element of rain or wind */
+{
+     font-weight: bold;
+}
+
+
+/* Paragraph */
+
+.atuiKernel_SectionText p
+{
+     text-align: center;
 }
 

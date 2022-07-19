@@ -1,65 +1,91 @@
-#dataTable /* Tableau entier */
+/* Global */
+
+#table
 {
-     margin : 20px;
-     border-radius: 20px;
-     border : 2px rgb(179, 179, 179) solid;
-     overflow: hidden;
+     width : 100%;
      display: none;
-     grid-template-columns: 1fr;
-     grid-template-rows: auto repeat(7, 1fr);
 }
 
-#dataTable img /* Toutesles images dans le tableau */
+
+/* Days */
+
+.nextDay
 {
-     width : 60px;
-     height : 60px;
+     border : var(--atuiKernel_ColorschemeOB3) solid;
+     border-width: 1px 0;
+     padding : 10px 0;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     flex-wrap: wrap;
 }
 
-#dataTable > div /* Lignes */
+.nextDay:first-child
 {
-     display: grid;
-     grid-template-columns: repeat(4, 1fr);
-     grid-template-rows: 1fr;
+     border-top-width: 0;
 }
 
-#dataTable > div > div /* Cellules individuellement */
+.nextDay:last-child
 {
-     border : 1px rgb(179, 179, 179) solid;
-     background-color: rgb(230, 230, 230);
-     padding : 10px 25px;
+     border-bottom-width: 0;
+}
+
+.nextDay > div
+{
+     flex : 1;
      display: flex;
      justify-content: center;
      align-items: center;
 }
 
-#dataTable div div p /* Texte dans cellules */
+@media (min-width : 768px) /* Computers */
 {
-     margin : 0;
+     .nextDay > div
+     {
+          flex-direction: row;
+          margin : 0 10px;
+     }
 }
 
-#dataTable div:first-child div p /* Texte dans l'en-tête */
+@media (max-width : 767px) /* Smartphones */
 {
-     font-weight : bold;
-     text-align: center;
-     font-size: 1.2rem;
+     .nextDay > div
+     {
+          flex-direction: column;
+          margin : 0;
+     }
 }
 
-#dataTable > div > div > * /* Elements dans cellule */
-{
-     margin : 0 5px;
-}
-
-#dataTable > div > div > div p /* Texte dans un enfant de cellule */
+.nextDay p,
+.nextDay img
 {
      margin : 10px;
 }
 
-#dataTable > div:nth-child(1n+2) > div:nth-child(3) /* Conteneur température */
+.nextDay img
 {
-     flex-direction: column;
+     width : 50px;
+     height : 50px;
 }
 
-#dataTable > div:nth-child(1n+2) > div:nth-child(3) p /* Texte température */
+.nextDay p
 {
-     margin : 5px;
+     text-align: center;
+     font-size : 1rem;
+     word-wrap: break-word;
+     flex : 1;
 }
+
+@media (min-width : 768px) /* Computers */
+{
+     .nextDay .temperature p:first-child
+     {
+          text-align: right;
+     }
+
+     .nextDay .temperature p:last-child
+     {
+          text-align: left;
+     }
+}
+
