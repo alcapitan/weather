@@ -1,5 +1,5 @@
 /* ATUI Features */
-atuiKernel_FooterLastedited(27,7,2022);
+atuiKernel_FooterLastedited(23,8,2022);
 atuiKernel_ColorschemeGeneratorAuto([64, 191, 128]);
 
 
@@ -511,19 +511,19 @@ function updateWebpage(infos,city)
           elementsTable[i].childNodes[3].childNodes[1].src = "patch/icons/" + convertInfos(infos[i]["weather"])[0] + ".png";
           elementsTable[i].childNodes[3].childNodes[1].alt = "Icône " + convertInfos(infos[i]["weather"])[1];
 
-          if (infos[0]["probarain"] > 0)
+          if (infos[i]["probarain"] > 0)
           {
                elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "block";
-               elementsTable[i].childNodes[3].childNodes[3].childNodes[1].textContent = infos[0]["probarain"] + " %";
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[1].textContent = infos[i]["probarain"] + " %";
           }
           else
           {
                elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "none";
           }
-          if (infos[0]["rr10"] > 0)
+          if (infos[i]["rr10"] > 0)
           {
                elementsTable[i].childNodes[3].childNodes[3].childNodes[3].style.display = "block";
-               elementsTable[i].childNodes[3].childNodes[3].childNodes[3].textContent = infos[0]["rr10"] + " mm";
+               elementsTable[i].childNodes[3].childNodes[3].childNodes[3].textContent = infos[i]["rr10"] + " mm";
           }
           else
           {
