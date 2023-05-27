@@ -11,7 +11,7 @@
 
 .nextDay
 {
-     border : var(--atuiKernel_ColorschemeOB3) solid;
+     border : hsl(var(--atuiKernel_Color-N70)) solid;
      border-width: 1px 0;
      padding : 10px 0;
      display: flex;

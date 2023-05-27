@@ -1,6 +1,5 @@
 /* ATUI Features */
-atuiKernel_FooterLastedited(2, 2, 2023);
-atuiKernel_ColorschemeGeneratorAuto([64, 191, 128]);
+atuiKernel_FooterLastedited(27, 5, 2023);
 
 /* Link searchbar to sending process */
 const searchButton = document.getElementById("atuiSearchservices_Submit");
@@ -17,8 +16,8 @@ function pressEnter(e) {
 const logText = document.getElementById("log");
 logText.innerHTML = "Recherchez une ville en France métropolitaine.";
 function log(message) {
-    document.getElementById("atuiKernel_Header").style.background =
-        "var(--atuiKernel_ColorschemeOA7)";
+    document.getElementById("backgroundToday").style.background =
+        "hsl(var(--atuiKernel_Color-A30))";
     logText.innerHTML = message;
     logText.style.display = "block";
     document.getElementById("today").style.display = "none";
@@ -53,8 +52,8 @@ const token =
 /* Update suggestions */
 
 async function updateSuggestions(search) {
-    document.getElementById("atuiKernel_Header").style.background =
-        "var(--atuiKernel_ColorschemeOA7)";
+    document.getElementById("backgroundToday").style.background =
+        "hsl(var(--atuiKernel_Color-A30))";
     log("Recherche de villes (0/2)");
     let response;
     try {
@@ -87,6 +86,7 @@ async function updateSuggestions(search) {
         }
         suggested.push(result);
     }
+    const atuiSearchservices_HeaderPropositionsSuggestedInfos = suggested;
     atuiSearchservices_HeaderPropositionsGenerate(undefined, suggested);
     log("Sélectionnez une ville.");
 }
@@ -95,8 +95,8 @@ async function updateSuggestions(search) {
 
 async function sendRequest(city) {
     // Recherche des villes
-    document.getElementById("atuiKernel_Header").style.background =
-        "var(--atuiKernel_ColorschemeOA7)";
+    document.getElementById("backgroundToday").style.background =
+        "hsl(var(--atuiKernel_Color-A30))";
     log("Recherche des villes (0/3)");
     let response;
     try {
@@ -439,19 +439,19 @@ function updateWebpage(infos, city) {
     let temperatureElementMax = document.getElementById("tempTodayMax");
     temperatureElementMax.textContent = infos[0]["tempmax"] + " °C";
     if (infos[0]["temp"] <= 5) {
-        document.getElementById("atuiKernel_Header").style.background =
+        document.getElementById("backgroundToday").style.background =
             "var(--veryCold)";
     } else if (infos[0]["temp"] <= 15) {
-        document.getElementById("atuiKernel_Header").style.background =
+        document.getElementById("backgroundToday").style.background =
             "var(--cold)";
     } else if (infos[0]["temp"] <= 25) {
-        document.getElementById("atuiKernel_Header").style.background =
+        document.getElementById("backgroundToday").style.background =
             "var(--lukewarm)";
     } else if (infos[0]["temp"] <= 35) {
-        document.getElementById("atuiKernel_Header").style.background =
+        document.getElementById("backgroundToday").style.background =
             "var(--hot)";
     } else if (infos[0]["temp"] >= 36) {
-        document.getElementById("atuiKernel_Header").style.background =
+        document.getElementById("backgroundToday").style.background =
             "var(--veryHot)";
     }
 

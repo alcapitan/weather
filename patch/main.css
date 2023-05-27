@@ -6,6 +6,7 @@
 :root {
     --colorLowTemp: rgb(0, 92, 230);
     --colorHighTemp: rgb(230, 46, 0);
+    --atuiKernel_Color-Accent : 150 !important;
 }
 
 body > section /* Section */ {

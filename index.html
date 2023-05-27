@@ -1,271 +1,305 @@
 <!DOCTYPE html>
 <html lang="fr">
-     <head>
-          <meta charset="UTF-8">
-          <meta name="description" content="AT Weather fournit la météo sur 7 jours dans les villes de France métropolitaine.">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <meta name="robots" content="index,follow">
-          <link rel="canonical" href="https://alcapitan.github.io/weather">
-          <meta name="theme-color" content="rgb(64,191,128)">
-          <title>AT Weather</title>
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Red+Hat+Display&display=swap" rel="stylesheet">
-          <link rel="stylesheet" type="text/css" href="atui/kernel/main.css" >
-          <link rel="stylesheet" type="text/css" href="atui/SearchService/main.css">
-          <link rel="stylesheet" type="text/css" href="patch/main.css">
-          <link rel="icon" type="img/png" href="patch/icons/logo.png">
-     </head>
-     <body>
-          <header id="atuiKernel_Header">
-               <aside>
-                    <div>
-                         <div id="atuiKernel_HeaderBlockLeft">
-                              <div id="atuiKernel_HeaderLogotype">
-                                   <a href="https://alcapitan.github.io/weather">
-                                        <img alt="Icône du site" src="patch/icons/logo.png">
-                                        <p>AT Weather</p>
-                                   </a>
-                              </div>
-                         </div>
-                         <div id="atuiKernel_HeaderBlockCenter">
-                              <nav id="atuiSearchservices_Header">
-                                   <div id="atuiSearchservices_HeaderBar">
-                                        <div>
-                                             <input id="atuiSearchservices_Input" name="atuiSearchservices_Request" type="text" placeholder="Rechercher une ville" required>
-                                             <input id="atuiSearchservices_Submit" type="image" src="atui/SearchService/medias/search.png" alt="Rechercher">
-                                        </div>
-                                   </div>
-                                   <aside id="atuiSearchservices_HeaderPropositions">
-                                        <article id="atuiSearchservices_HeaderPropositionsSuggested">
-                                             <p>Suggestions</p>
-                                             <div id="atuiSearchservices_HeaderPropositionsSuggestedContainer">
-                                             </div>
-                                        </article>
-                                   </aside>
-                              </nav>
-                         </div>
-                         <div id="atuiKernel_HeaderBlockRight">
-                              <div id="atuiKernel_ToolsSettingsDisplaymode">
-                                   <img alt="Mode clair activé" src="atui/kernel/medias/light.png">
-                              </div>
-                         </div>
-                    </div>
-               </aside>
-               <article class="atuiKernel_ToolsCarousel">
-                    <div id="today">
-                         <p id="cityToday">Ville</p>
-                         <div id="information">
-                              <div id="skyToday">
-                                   <img src="patch/icons/sun.png" id="skyTodayImg" />
-                                   <div class="rain">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content="AT Weather fournit la météo sur 7 jours dans les villes de France métropolitaine."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index,follow" />
+        <link rel="canonical" href="https://alcapitan.github.io/weather" />
+        <meta name="theme-color" content="rgb(64,191,128)" />
+        <title>AT Weather</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat&family=Red+Hat+Display&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/alcapitan/atui@0.4.0/atui/kernel/dist/dist.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/alcapitan/atui@0.4.0/atui/SearchService/dist/dist.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+        />
+        <link rel="stylesheet" type="text/css" href="patch/main.css" />
+        <link rel="icon" type="img/png" href="patch/icons/logo.png" />
+    </head>
+    <body id="atuiKernel_Body">
+        <div class="atuiKernel_BodyContent">
+            <header class="atuiKernel_Header optionCarousel">
+                <div>
+                    <a
+                        href="https://alcapitan.github.io/weather"
+                        class="atuiKernel_Logotype"
+                    >
+                        <img alt="Icon du site" src="patch/icons/logo.png" />
+                        <p>AT Weather</p>
+                    </a>
+                    <hr class="atuiKernel_HeaderSpace" />
+                    <nav id="atuiSearchservices_Header">
+                        <div id="atuiSearchservices_HeaderBar">
+                            <form>
+                                <input
+                                    id="atuiSearchservices_Input"
+                                    name="atuiSearchservices_Request"
+                                    type="text"
+                                    placeholder="Rechercher une ville"
+                                    required
+                                />
+                                <i id="atuiSearchservices_Submit" class="ti ti-search atuiKernel_InputSubmit"></i>
+                            </form>
+                        </div>
+                        <aside id="atuiSearchservices_HeaderPropositions">
+                            <article
+                                id="atuiSearchservices_HeaderPropositionsSuggested"
+                            >
+                                <h3>Suggestions</h3>
+                                <div
+                                    id="atuiSearchservices_HeaderPropositionsSuggestedContainer"
+                                ></div>
+                            </article>
+                        </aside>
+                    </nav>
+                    <hr class="atuiKernel_HeaderSpace optionDesktoponly" />
+                    <i class="ti ti-sun atuiKernel_ColormodeButton"></i>
+                </div>
+            </header>
+            <div class="atuiKernel_Carousel">
+                <div>
+                    <div id="backgroundToday">
+                        <div id="today">
+                            <p id="cityToday">Ville</p>
+                            <div id="information">
+                                <div id="skyToday">
+                                    <img
+                                        src="patch/icons/sun.png"
+                                        id="skyTodayImg"
+                                    />
+                                    <div class="rain">
                                         <p id="skyTodayProbarain">X %</p>
                                         <p id="skyTodayAccumurain">X mm</p>
-                                   </div>
-                              </div>
-                              <div id="tempToday" class="temperature">
-                                   <p id="tempTodayMin">X °C</p>
-                                   <p id="tempTodayMax">X °C</p>
-                              </div>
-                              <div id="windToday">
-                                   <img src="patch/icons/wind-direction.png" id="windTodayImg" />
-                                   <div class="wind">
+                                    </div>
+                                </div>
+                                <div id="tempToday" class="temperature">
+                                    <p id="tempTodayMin">X °C</p>
+                                    <p id="tempTodayMax">X °C</p>
+                                </div>
+                                <div id="windToday">
+                                    <img
+                                        src="patch/icons/wind-direction.png"
+                                        id="windTodayImg"
+                                    />
+                                    <div class="wind">
                                         <p id="windTodayMin">X km/h</p>
                                         <p id="windTodayMax">X km/h</p>
-                                   </div>
-                              </div>
-                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="log"></p>
                     </div>
-                    <p id="log"></p>
-               </article>
-          </header>
-          <section>
-               <div id="table">
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
+                </div>
+            </div>
+            <section id="atuiKernel_Section">
+                <div class="atuiKernel_SectionContent">
+                    <div id="table">
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nextDay">
+                            <div>
+                                <p>Jour</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/sun.png" />
+                                <div class="rain">
+                                    <p>X %</p>
+                                    <p>X mm</p>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <p>X °C</p>
+                                <p>X °C</p>
+                            </div>
+                            <div>
+                                <img src="patch/icons/wind-direction.png" />
+                                <div class="wind">
+                                    <p>X km/h</p>
+                                    <p>X km/h</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
+                    <div class="atuiKernel_SectionText">
+                        <p>
+                            Les données proviennent de l'<a
+                                href="https://api.meteo-concept.com/"
+                                target="_blank"
+                                >API de Météo Concept</a
+                            >.
+                        </p>
                     </div>
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="nextDay">
-                         <div>
-                              <p>Jour</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/sun.png"/>
-                              <div class="rain">
-                                   <p>X %</p>
-                                   <p>X mm</p>
-                              </div>
-                         </div>
-                         <div class="temperature">
-                              <p>X °C</p>
-                              <p>X °C</p>
-                         </div>
-                         <div>
-                              <img src="patch/icons/wind-direction.png"/>
-                              <div class="wind">
-                                   <p>X km/h</p>
-                                   <p>X km/h</p>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-               <div class="atuiKernel_SectionText">
-                    <p>Les données proviennent de l'<a href="https://api.meteo-concept.com/" target="_blank">API de Météo Concept</a>. </p>
-               </div>
-          </section>
-          <footer id="atuiKernel_FooterContrast">
-               <div id="atuiKernel_FooterScrolltop">
-                    <a href="#">
-                         <img alt="Revenir au début" src="atui/kernel/medias/scrolltop.png">
-                    </a>
-               </div>
-               <div class="atuiKernel_FooterContentsRow">
+                </div>
+            </section>
+            <footer class="atuiKernel_Footer">
+                <div class="atuiKernel_FooterContentsRow">
                     <h3>Contacts</h3>
                     <div id="atuiKernel_ToolsContactCompact">
-                         <a href="https://github.com/alcapitan/weather"><img src="atui/kernel/medias/github.png" alt="Voir le code source sur GitHub. "></a>
+                        <a href="https://github.com/alcapitan/weather"
+                            ><i class="ti ti-brand-github"></i
+                        ></a>
                     </div>
-               </div>
-               <div id="atuiKernel_FooterInfo">
-               </div>
-          </footer>
-          <aside id="atuiKernel_Notification">
-          </aside>
-          <script src="atui/kernel/main.js"></script>
-          <script src="atui/SearchService/main.js"></script>
-          <script src="patch/main.js"></script>
-     </body>
+                </div>
+                <div id="atuiKernel_FooterInfo"></div>
+            </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/gh/alcapitan/atui@0.4.0/atui/kernel/dist/dist.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alcapitan/atui@0.4.0/atui/SearchService/dist/dist.js"></script>
+        <script src="patch/main.js"></script>
+    </body>
 </html>
