@@ -1,5 +1,11 @@
 /* ATUI Features */
-atuiKernel_FooterLastedited(27, 5, 2023);
+atuiKernel_FooterLastedited(31, 5, 2023);
+
+/* ATUI patch */
+
+function searchResults(data) {
+    console.log(data);
+}
 
 /* Link searchbar to sending process */
 const searchButton = document.getElementById("atuiSearchservices_Submit");
@@ -86,8 +92,13 @@ async function updateSuggestions(search) {
         }
         suggested.push(result);
     }
+    searchResults(suggested);
+    /*console.log(suggested);
     const atuiSearchservices_HeaderPropositionsSuggestedInfos = suggested;
-    atuiSearchservices_HeaderPropositionsGenerate(undefined, suggested);
+    atuiSearchservices_HeaderPropositionsGenerate(
+        undefined,
+        atuiSearchservices_HeaderPropositionsSuggestedInfos
+    );*/
     log("Sélectionnez une ville.");
 }
 

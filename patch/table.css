@@ -11,23 +11,10 @@
 
 .nextDay
 {
-     border : hsl(var(--atuiKernel_Color-N70)) solid;
-     border-width: 1px 0;
-     padding : 10px 0;
      display: flex;
      justify-content: space-between;
      align-items: center;
      flex-wrap: wrap;
-}
-
-.nextDay:first-child
-{
-     border-top-width: 0;
-}
-
-.nextDay:last-child
-{
-     border-bottom-width: 0;
 }
 
 .nextDay > div

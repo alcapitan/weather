@@ -37,16 +37,22 @@
 {
      font-size: 2rem;
      text-align: center; /* pour mobile / ATUI */
+     margin: 0;
 }
 
 
 /* Today */
+
+#backgroundToday {
+    align-items: center;
+}
 
 #today
 {
      background: transparent; /* ATUI */
      display: none;
      padding : 0; /* ATUI */
+     align-items: center;
 }
 
 #cityToday

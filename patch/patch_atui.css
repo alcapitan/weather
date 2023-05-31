@@ -1,0 +1,13 @@
+/* Carousel */
+
+.atuiKernel_Carousel {
+    min-height: auto !important; /* Replace in ATUI : min($(js defined), 25vh) */
+}
+
+.atuiKernel_Carousel > div {
+    background-color: hsl(var(--atuiKernel_Color-A20));
+}
+
+.atuiKernel_Carousel > div > div {
+    position: relative;
+}
