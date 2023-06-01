@@ -45,6 +45,12 @@
     align-items: center;
 }
 
+@media (width <= 767px) /* Smartphones */ {
+    #today {
+        flex-direction: column;
+    }
+}
+
 #cityToday {
     font-weight: bold;
     font-size: 1.4rem;

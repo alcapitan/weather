@@ -493,7 +493,7 @@ function updateWebpage(infos, city) {
   document.getElementById("table").style.display = "block";
   const elementsTable = document.getElementsByClassName("nextDay");
 
-  for (i = 0; i < elementsTable.length; i++) {
+  for (let i = 0; i < elementsTable.length; i++) {
     // Date
     elementsTable[i].childNodes[1].innerHTML =
     "<p>" + infos[i + 1]["date"][0] + " " + infos[i + 1]["date"][1] + " " + infos[i + 1]["date"][2] + "</p>";
