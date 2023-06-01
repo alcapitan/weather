@@ -1,0 +1,35 @@
+name: Run NPM check script
+
+on:
+  push:
+  pull_request:
+
+env:
+  FORCE_COLOR: 2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16,18,20]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Link french dictionary with CSpell
+      run: | 
+        npx cspell link add @cspell/dict-fr-fr
+
+    - name: Run the NPM test script
+      run: npm run check

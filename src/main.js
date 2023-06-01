@@ -52,8 +52,7 @@ function pressEnter(e) {
 const logText = document.getElementById("log");
 logText.innerHTML = "Recherchez une ville en France métropolitaine.";
 function log(message) {
-    document.getElementById("backgroundToday").style.background =
-        "hsl(var(--atuiKernel_Color-A30))";
+    document.getElementById("backgroundToday").style.background = "hsl(var(--atuiKernel_Color-A30))";
     logText.innerHTML = message;
     logText.style.display = "block";
     document.getElementById("today").style.display = "none";
@@ -79,28 +78,22 @@ function createRequest() {
 const requestHeader = new Headers({
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization:
-        "Bearer 8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f",
+    Authorization: "Bearer 8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f",
 });
-const token =
-    "8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f";
+const token = "8d432d87acf6b2a4e36ee21cd41d5821cb1db3133b673e79dd0f6f0b80cca53f";
 
 /* Update suggestions */
 
 async function updateSuggestions(search) {
-    document.getElementById("backgroundToday").style.background =
-        "hsl(var(--atuiKernel_Color-A30))";
+    document.getElementById("backgroundToday").style.background = "hsl(var(--atuiKernel_Color-A30))";
     log("Recherche de villes (0/2)");
     let response;
     try {
-        response = await fetch(
-            `https://api.meteo-concept.com/api/location/cities?token=${token}&search=${search}`,
-            {
-                method: "GET",
-                headers: requestHeader,
-                mode: "cors",
-            }
-        );
+        response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${search}`, {
+            method: "GET",
+            headers: requestHeader,
+            mode: "cors",
+        });
     } catch {
         log("Le service de l'API est indisponible.");
     }
@@ -116,10 +109,7 @@ async function updateSuggestions(search) {
     for (let counter = 0; counter < nb_cities; counter++) {
         try {
             result = [
-                content.cities[counter]["name"] +
-                    " (" +
-                    content.cities[counter]["cp"] +
-                    ")",
+                content.cities[counter]["name"] + " (" + content.cities[counter]["cp"] + ")",
                 content.cities[counter]["cp"],
             ];
         } catch {
@@ -135,19 +125,15 @@ async function updateSuggestions(search) {
 
 async function sendRequest(city) {
     // Recherche des villes
-    document.getElementById("backgroundToday").style.background =
-        "hsl(var(--atuiKernel_Color-A30))";
+    document.getElementById("backgroundToday").style.background = "hsl(var(--atuiKernel_Color-A30))";
     log("Recherche des villes (0/3)");
     let response;
     try {
-        response = await fetch(
-            `https://api.meteo-concept.com/api/location/cities?token=${token}&search=${city}`,
-            {
-                method: "GET",
-                headers: requestHeader,
-                mode: "cors",
-            }
-        );
+        response = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${city}`, {
+            method: "GET",
+            headers: requestHeader,
+            mode: "cors",
+        });
     } catch {
         log("Le service de l'API est indisponible.");
     }
@@ -161,14 +147,11 @@ async function sendRequest(city) {
     log("Réception des données météo (1/3)");
     const insee = content.cities[0]["insee"]; // Révèle l'INSEE de la ville en premier résultat
     try {
-        response = await fetch(
-            `https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=${insee}`,
-            {
-                method: "GET",
-                headers: requestHeader,
-                mode: "cors",
-            }
-        );
+        response = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=${insee}`, {
+            method: "GET",
+            headers: requestHeader,
+            mode: "cors",
+        });
     } catch {
         log("Le service de l'API est indisponible.");
     }
@@ -178,11 +161,9 @@ async function sendRequest(city) {
     log("Traitement (2/3)");
     city = contentInsee.city["name"] + " (" + contentInsee.city["cp"] + ")";
     let result = []; // Créé un objet avec toutes les infos nécessaires
-    for (i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
         result[i] = {};
-        contentInsee.forecast[i]["datetime"] = new Date(
-            contentInsee.forecast[i]["datetime"]
-        );
+        contentInsee.forecast[i]["datetime"] = new Date(contentInsee.forecast[i]["datetime"]);
         result[i]["date"] = [
             convertDay(contentInsee.forecast[i]["datetime"].getDay()),
             contentInsee.forecast[i]["datetime"].getDate(),
@@ -192,10 +173,7 @@ async function sendRequest(city) {
         result[i]["kmgust"] = contentInsee.forecast[i]["gust10m"];
         result[i]["dirwind"] = contentInsee.forecast[i]["dirwind10m"] + 180;
         result[i]["weather"] = contentInsee.forecast[i]["weather"];
-        result[i]["temp"] =
-            (contentInsee.forecast[i]["tmin"] +
-                contentInsee.forecast[i]["tmax"]) /
-            2;
+        result[i]["temp"] = (contentInsee.forecast[i]["tmin"] + contentInsee.forecast[i]["tmax"]) / 2;
         result[i]["tempmin"] = contentInsee.forecast[i]["tmin"];
         result[i]["tempmax"] = contentInsee.forecast[i]["tmax"];
         result[i]["probarain"] = contentInsee.forecast[i]["probarain"];
@@ -288,7 +266,6 @@ function convertInfos(sky) {
         76: ["rain", "pluie fine"],
         77: ["heavy-rain", "pluie"],
         78: ["torrential-rain", "tempête pluvieuse"],
-        100: ["cloud-lighting", "orages"],
         100: ["cloud-lighting", "orages"],
         101: ["cloud-lighting", "orages"],
         102: ["cloud-lighting", "orages"],
@@ -479,34 +456,26 @@ function updateWebpage(infos, city) {
     let temperatureElementMax = document.getElementById("tempTodayMax");
     temperatureElementMax.textContent = infos[0]["tempmax"] + " °C";
     if (infos[0]["temp"] <= 5) {
-        document.getElementById("backgroundToday").style.background =
-            "var(--veryCold)";
+        document.getElementById("backgroundToday").style.background = "var(--veryCold)";
     } else if (infos[0]["temp"] <= 15) {
-        document.getElementById("backgroundToday").style.background =
-            "var(--cold)";
+        document.getElementById("backgroundToday").style.background = "var(--cold)";
     } else if (infos[0]["temp"] <= 25) {
-        document.getElementById("backgroundToday").style.background =
-            "var(--lukewarm)";
+        document.getElementById("backgroundToday").style.background = "var(--lukewarm)";
     } else if (infos[0]["temp"] <= 35) {
-        document.getElementById("backgroundToday").style.background =
-            "var(--hot)";
+        document.getElementById("backgroundToday").style.background = "var(--hot)";
     } else if (infos[0]["temp"] >= 36) {
-        document.getElementById("backgroundToday").style.background =
-            "var(--veryHot)";
+        document.getElementById("backgroundToday").style.background = "var(--veryHot)";
     }
 
     // Sky
     let skyElementImage = document.getElementById("skyTodayImg");
-    skyElementImage.src =
-        "patch/icons/" + convertInfos(infos[0]["weather"])[0] + ".png";
+    skyElementImage.src = "assets/icons/" + convertInfos(infos[0]["weather"])[0] + ".png";
     skyElementImage.alt = "Icône " + convertInfos(infos[0]["weather"])[1];
     if (infos[0]["probarain"] > 50) {
         document.getElementById("skyTodayProbarain").style.display = "block";
-        document.getElementById("skyTodayProbarain").textContent =
-            infos[0]["probarain"] + " %";
+        document.getElementById("skyTodayProbarain").textContent = infos[0]["probarain"] + " %";
         document.getElementById("skyTodayAccumurain").style.display = "block";
-        document.getElementById("skyTodayAccumurain").textContent =
-            infos[0]["rr10"] + " mm";
+        document.getElementById("skyTodayAccumurain").textContent = infos[0]["rr10"] + " mm";
     } else {
         document.getElementById("skyTodayProbarain").style.display = "none";
         document.getElementById("skyTodayAccumurain").style.display = "none";
@@ -527,56 +496,30 @@ function updateWebpage(infos, city) {
     for (i = 0; i < elementsTable.length; i++) {
         // Date
         elementsTable[i].childNodes[1].innerHTML =
-            "<p>" +
-            infos[i + 1]["date"][0] +
-            " " +
-            infos[i + 1]["date"][1] +
-            " " +
-            infos[i + 1]["date"][2] +
-            "</p>";
+            "<p>" + infos[i + 1]["date"][0] + " " + infos[i + 1]["date"][1] + " " + infos[i + 1]["date"][2] + "</p>";
 
         // Sky & Rain
         elementsTable[i].childNodes[3].childNodes[1].src =
-            "patch/icons/" + convertInfos(infos[i + 1]["weather"])[0] + ".png";
-        elementsTable[i].childNodes[3].childNodes[1].alt =
-            "Icône " + convertInfos(infos[i + 1]["weather"])[1];
+            "assets/icons/" + convertInfos(infos[i + 1]["weather"])[0] + ".png";
+        elementsTable[i].childNodes[3].childNodes[1].alt = "Icône " + convertInfos(infos[i + 1]["weather"])[1];
 
         if (infos[i + 1]["probarain"] > 50) {
-            elementsTable[
-                i
-            ].childNodes[3].childNodes[3].childNodes[1].style.display = "block";
-            elementsTable[
-                i
-            ].childNodes[3].childNodes[3].childNodes[1].textContent =
-                infos[i + 1]["probarain"] + " %";
-            elementsTable[
-                i
-            ].childNodes[3].childNodes[3].childNodes[3].style.display = "block";
-            elementsTable[
-                i
-            ].childNodes[3].childNodes[3].childNodes[3].textContent =
-                infos[i + 1]["rr10"] + " mm";
+            elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "block";
+            elementsTable[i].childNodes[3].childNodes[3].childNodes[1].textContent = infos[i + 1]["probarain"] + " %";
+            elementsTable[i].childNodes[3].childNodes[3].childNodes[3].style.display = "block";
+            elementsTable[i].childNodes[3].childNodes[3].childNodes[3].textContent = infos[i + 1]["rr10"] + " mm";
         } else {
-            elementsTable[
-                i
-            ].childNodes[3].childNodes[3].childNodes[1].style.display = "none";
-            elementsTable[
-                i
-            ].childNodes[3].childNodes[3].childNodes[3].style.display = "none";
+            elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "none";
+            elementsTable[i].childNodes[3].childNodes[3].childNodes[3].style.display = "none";
         }
 
         // Temperature
-        elementsTable[i].childNodes[5].childNodes[1].textContent =
-            infos[i + 1]["tempmin"] + " °C";
-        elementsTable[i].childNodes[5].childNodes[3].textContent =
-            infos[i + 1]["tempmax"] + " °C";
+        elementsTable[i].childNodes[5].childNodes[1].textContent = infos[i + 1]["tempmin"] + " °C";
+        elementsTable[i].childNodes[5].childNodes[3].textContent = infos[i + 1]["tempmax"] + " °C";
 
         // Wind
-        elementsTable[i].childNodes[7].childNodes[1].style.transform =
-            "rotate(" + infos[i + 1]["dirwind"] + "deg)";
-        elementsTable[i].childNodes[7].childNodes[3].childNodes[1].textContent =
-            infos[i + 1]["kmwind"] + " km/h";
-        elementsTable[i].childNodes[7].childNodes[3].childNodes[3].textContent =
-            infos[i + 1]["kmgust"] + " km/h";
+        elementsTable[i].childNodes[7].childNodes[1].style.transform = "rotate(" + infos[i + 1]["dirwind"] + "deg)";
+        elementsTable[i].childNodes[7].childNodes[3].childNodes[1].textContent = infos[i + 1]["kmwind"] + " km/h";
+        elementsTable[i].childNodes[7].childNodes[3].childNodes[3].textContent = infos[i + 1]["kmgust"] + " km/h";
     }
 }

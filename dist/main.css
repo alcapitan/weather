@@ -4,9 +4,12 @@
 /* Global */
 
 :root {
+    --atuiKernel_Color-Accent: 150 !important;
+}
+
+:root {
     --colorLowTemp: rgb(0, 92, 230);
     --colorHighTemp: rgb(230, 46, 0);
-    --atuiKernel_Color-Accent : 150 !important;
 }
 
 body > section /* Section */ {
@@ -18,10 +21,12 @@ body > section /* Section */ {
 /* Common */
 
 .temperature p:first-child /* Coldest temperature */ {
+    color: rgb(0, 92, 230);
     color: var(--colorLowTemp);
 }
 
 .temperature p:last-child /* Hottest temperature */ {
+    color: rgb(230, 46, 0);
     color: var(--colorHighTemp);
 }
 

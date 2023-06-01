@@ -1,1 +1,10 @@
+# Useless files
 .vscode
+
+# NPM
+node_modules
+
+# Cache
+.cspellcache
+.eslintcache
+.stylelintcache

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["main.css"],
+  "sourcesContent": ["@import url(\"./table.css\");\n@import url(\"./today.css\");\n\n/* Global */\n\n:root {\n    --atuiKernel_Color-Accent: 150 !important;\n}\n\n:root {\n    --colorLowTemp: rgb(0, 92, 230);\n    --colorHighTemp: rgb(230, 46, 0);\n}\n\nbody > section /* Section */ {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n/* Common */\n\n.temperature p:first-child /* Coldest temperature */ {\n    color: rgb(0, 92, 230);\n    color: var(--colorLowTemp);\n}\n\n.temperature p:last-child /* Hottest temperature */ {\n    color: rgb(230, 46, 0);\n    color: var(--colorHighTemp);\n}\n\n.rain p,\n.wind p {\n    color: var(--atuiKernel_ColorschemeOB6);\n}\n\n.rain p:nth-child(1),\n.wind p:nth-child(1)\n/* First element of rain or wind */ {\n    font-weight: bold;\n}\n\n/* Paragraph */\n\n.atuiKernel_SectionText p {\n    text-align: center;\n}\n"],
+  "mappings": "0CAKA,MACI,0CAGJ,MACI,gCACA,iCAGJ,aACI,aACA,sBACA,mBAKJ,2BACI,cACA,0BAGJ,0BACI,cACA,2BAGJ,gBAEI,uCAGJ,0CAGI,gBAKJ,0BACI",
+  "names": []
+}

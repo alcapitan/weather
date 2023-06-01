@@ -1,0 +1,39 @@
+/* Carousel */
+
+.atuiKernel_Carousel {
+    min-height: auto !important;
+}
+
+.atuiKernel_Carousel { /* Replace in ATUI : min($(js defined), 25vh) */
+}
+
+.atuiKernel_Carousel > div {
+    background-color: hsl(var(--atuiKernel_Color-A20));
+}
+
+.atuiKernel_Carousel > div > div {
+    position: relative;
+}
+
+/* Search panel */
+
+#atuiSearchservices_HeaderPropositions > div {
+    margin: 0 20px;
+}
+
+#atuiSearchservices_HeaderPropositions > div h3
+/* Title of containers */ {
+    margin: 0;
+    font-family: var(--atuiKernel_FontsTitle);
+    font-weight: var(--atuiKernel_TitleBold);
+}
+
+#atuiSearchservices_HeaderPropositions > div ul {
+    list-style: none;
+    padding-left: 10px;
+    margin: 8px 0;
+}
+
+#atuiSearchservices_HeaderPropositions > div li {
+    padding: 5px 0;
+}

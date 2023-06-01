@@ -1,0 +1,24 @@
+{
+    "version": "0.2",
+    "dictionaries": ["node", "npm", "fonts", "markdown", "html", "css"],
+    "language": "fr,en",
+    "useGitignore": true,
+    "ignorePaths": ["/node_modules"],
+    "words": [
+        "atui",
+        "Caniuse",
+        "Lastedited",
+        "insee",
+        "Searchservices",
+        "kmwind",
+        "kmgust",
+        "dirwind",
+        "tempmin",
+        "tempmax",
+        "probarain",
+        "Accumurain",
+        "Probarain",
+        "tmin",
+        "tmax"
+    ]
+}

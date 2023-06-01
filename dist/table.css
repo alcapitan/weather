@@ -1,0 +1,63 @@
+/* Global */
+
+#table {
+    width: 100%;
+    display: none;
+}
+
+/* Days */
+
+.nextDay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nextDay > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) /* Computers */ {
+    .nextDay > div {
+        flex-direction: row;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 767px) /* Smartphones */ {
+    .nextDay > div {
+        flex-direction: column;
+        margin: 0;
+    }
+}
+
+.nextDay p,
+.nextDay img {
+    margin: 10px;
+}
+
+.nextDay img {
+    width: 50px;
+    height: 50px;
+}
+
+.nextDay p {
+    text-align: center;
+    font-size: 1rem;
+    word-wrap: break-word;
+    flex: 1;
+}
+
+@media (min-width: 768px) /* Computers */ {
+    .nextDay .temperature p:first-child {
+        text-align: right;
+    }
+
+    .nextDay .temperature p:last-child {
+        text-align: left;
+    }
+}
