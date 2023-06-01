@@ -1,10 +1,39 @@
 /* ATUI Features */
-atuiKernel_FooterLastedited(31, 5, 2023);
+atuiKernel_FooterLastedited(1, 6, 2023);
 
 /* ATUI patch */
 
-function searchResults(data) {
-    console.log(data);
+function showSuggestedResults(data) {
+    const containerElement = document.getElementById("suggestions");
+    let list = containerElement.querySelector("ul");
+
+    /* Create list if not exist */
+    if (!list) {
+        list = document.createElement("ul");
+        containerElement.appendChild(list);
+    }
+
+    /* Clean items */
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+
+    /* If there is no matching city */
+    if (data.length == 0) {
+        const item = document.createElement("li");
+        item.innerText = "No matching city.";
+        list.appendChild(item);
+    }
+
+    /* Add matching cities */
+    for (let counter = 0; counter < data.length; counter++) {
+        const item = document.createElement("li");
+        item.innerText = data[counter][0];
+        item.onclick = () => {
+            sendRequest(data[counter][1]);
+        };
+        list.appendChild(item);
+    }
 }
 
 /* Link searchbar to sending process */
@@ -14,6 +43,7 @@ searchButton.addEventListener("click", createRequest);
 document.addEventListener("keyup", pressEnter);
 function pressEnter(e) {
     if (e.code == "Enter") {
+        e.preventDefault();
         createRequest();
     }
 }
@@ -76,9 +106,14 @@ async function updateSuggestions(search) {
     }
     const content = await response.json(); // Converti la réponse en JSON
     log("Traitement (1/2)");
+    /* Number of results */
+    let nb_cities = content.cities["length"];
+    if (nb_cities > 5) {
+        nb_cities = 5;
+    }
     let suggested = [];
     let result;
-    for (let counter = 0; counter < 5; counter++) {
+    for (let counter = 0; counter < nb_cities; counter++) {
         try {
             result = [
                 content.cities[counter]["name"] +
@@ -92,13 +127,7 @@ async function updateSuggestions(search) {
         }
         suggested.push(result);
     }
-    searchResults(suggested);
-    /*console.log(suggested);
-    const atuiSearchservices_HeaderPropositionsSuggestedInfos = suggested;
-    atuiSearchservices_HeaderPropositionsGenerate(
-        undefined,
-        atuiSearchservices_HeaderPropositionsSuggestedInfos
-    );*/
+    showSuggestedResults(suggested);
     log("Sélectionnez une ville.");
 }
 
@@ -499,34 +528,34 @@ function updateWebpage(infos, city) {
         // Date
         elementsTable[i].childNodes[1].innerHTML =
             "<p>" +
-            infos[i]["date"][0] +
+            infos[i + 1]["date"][0] +
             " " +
-            infos[i]["date"][1] +
+            infos[i + 1]["date"][1] +
             " " +
-            infos[i]["date"][2] +
+            infos[i + 1]["date"][2] +
             "</p>";
 
         // Sky & Rain
         elementsTable[i].childNodes[3].childNodes[1].src =
-            "patch/icons/" + convertInfos(infos[i]["weather"])[0] + ".png";
+            "patch/icons/" + convertInfos(infos[i + 1]["weather"])[0] + ".png";
         elementsTable[i].childNodes[3].childNodes[1].alt =
-            "Icône " + convertInfos(infos[i]["weather"])[1];
+            "Icône " + convertInfos(infos[i + 1]["weather"])[1];
 
-        if (infos[i]["probarain"] > 50) {
+        if (infos[i + 1]["probarain"] > 50) {
             elementsTable[
                 i
             ].childNodes[3].childNodes[3].childNodes[1].style.display = "block";
             elementsTable[
                 i
             ].childNodes[3].childNodes[3].childNodes[1].textContent =
-                infos[i]["probarain"] + " %";
+                infos[i + 1]["probarain"] + " %";
             elementsTable[
                 i
             ].childNodes[3].childNodes[3].childNodes[3].style.display = "block";
             elementsTable[
                 i
             ].childNodes[3].childNodes[3].childNodes[3].textContent =
-                infos[i]["rr10"] + " mm";
+                infos[i + 1]["rr10"] + " mm";
         } else {
             elementsTable[
                 i
@@ -538,16 +567,16 @@ function updateWebpage(infos, city) {
 
         // Temperature
         elementsTable[i].childNodes[5].childNodes[1].textContent =
-            infos[i]["tempmin"] + " °C";
+            infos[i + 1]["tempmin"] + " °C";
         elementsTable[i].childNodes[5].childNodes[3].textContent =
-            infos[i]["tempmax"] + " °C";
+            infos[i + 1]["tempmax"] + " °C";
 
         // Wind
         elementsTable[i].childNodes[7].childNodes[1].style.transform =
-            "rotate(" + infos[i]["dirwind"] + "deg)";
+            "rotate(" + infos[i + 1]["dirwind"] + "deg)";
         elementsTable[i].childNodes[7].childNodes[3].childNodes[1].textContent =
-            infos[i]["kmwind"] + " km/h";
+            infos[i + 1]["kmwind"] + " km/h";
         elementsTable[i].childNodes[7].childNodes[3].childNodes[3].textContent =
-            infos[i]["kmgust"] + " km/h";
+            infos[i + 1]["kmgust"] + " km/h";
     }
 }
