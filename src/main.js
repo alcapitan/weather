@@ -1,5 +1,5 @@
 /* ATUI Features */
-atuiKernel_FooterLastedited(1, 6, 2023);
+atuiKernel_FooterLastedited(9, 6, 2023);
 
 /* ATUI patch */
 
@@ -219,53 +219,53 @@ function convertMonth(num) {
 function convertInfos(sky) {
     const transform = {
         0: ["sun", "ensoleillé"],
-        1: ["partly-cloudy", "éclaircies"],
-        2: ["partly-cloudy", "éclaircies"],
+        1: ["cloud-sun", "éclaircies"],
+        2: ["cloud-sun", "éclaircies"],
         3: ["clouds", "nuageux"],
         4: ["clouds", "nuageux"],
         5: ["clouds", "nuageux"],
-        6: ["haze", "brouillard"],
-        7: ["haze", "brouillard"],
-        10: ["rain", "pluie fine"],
-        11: ["heavy-rain", "pluie"],
-        12: ["torrential-rain", "tempête pluvieuse"],
-        13: ["rain", "pluie fine"],
-        14: ["heavy-rain", "pluie"],
-        15: ["torrential-rain", "tempête pluvieuse"],
-        16: ["haze", "brouillard"],
-        20: ["light-snow", "neige légère"],
-        21: ["snow", "neige"],
-        22: ["snow-storm", "tempête de neige"],
-        30: ["rain", "pluie fine"],
-        31: ["heavy-rain", "pluie"],
-        32: ["torrential-rain", "tempête pluvieuse"],
-        40: ["rain", "pluie fine"],
-        41: ["heavy-rain", "pluie"],
-        42: ["torrential-rain", "tempête pluvieuse"],
-        43: ["rain", "pluie fine"],
-        44: ["heavy-rain", "pluie"],
-        45: ["torrential-rain", "tempête pluvieuse"],
-        46: ["rain", "pluie fine"],
-        47: ["heavy-rain", "pluie"],
-        48: ["torrential-rain", "tempête pluvieuse"],
-        60: ["light-snow", "neige légère"],
-        61: ["snow", "neige"],
-        62: ["snow-storm", "tempête de neige"],
-        63: ["light-snow", "neige légère"],
-        64: ["snow", "neige"],
-        65: ["snow-storm", "tempête de neige"],
-        66: ["light-snow", "neige légère"],
-        67: ["snow", "neige"],
-        68: ["snow-storm", "tempête de neige"],
-        70: ["rain", "pluie fine"],
-        71: ["heavy-rain", "pluie"],
-        72: ["torrential-rain", "tempête pluvieuse"],
-        73: ["rain", "pluie fine"],
-        74: ["heavy-rain", "pluie"],
-        75: ["torrential-rain", "tempête pluvieuse"],
-        76: ["rain", "pluie fine"],
-        77: ["heavy-rain", "pluie"],
-        78: ["torrential-rain", "tempête pluvieuse"],
+        6: ["cloud-haze", "brouillard"],
+        7: ["cloud-haze", "brouillard"],
+        10: ["cloud-drizzle", "pluie fine"],
+        11: ["cloud-rain", "pluie"],
+        12: ["cloud-rain-heavy", "tempête pluvieuse"],
+        13: ["cloud-drizzle", "pluie fine"],
+        14: ["cloud-rain", "pluie"],
+        15: ["cloud-rain-heavy", "tempête pluvieuse"],
+        16: ["cloud-haze", "brouillard"],
+        20: ["cloud-snow", "neige légère"],
+        21: ["cloud-snow", "neige"],
+        22: ["cloud-snow", "tempête de neige"],
+        30: ["cloud-drizzle", "pluie fine"],
+        31: ["cloud-rain", "pluie"],
+        32: ["cloud-rain-heavy", "tempête pluvieuse"],
+        40: ["cloud-drizzle", "pluie fine"],
+        41: ["cloud-rain", "pluie"],
+        42: ["cloud-rain-heavy", "tempête pluvieuse"],
+        43: ["cloud-drizzle", "pluie fine"],
+        44: ["cloud-rain", "pluie"],
+        45: ["cloud-rain-heavy", "tempête pluvieuse"],
+        46: ["cloud-drizzle", "pluie fine"],
+        47: ["cloud-rain", "pluie"],
+        48: ["cloud-rain-heavy", "tempête pluvieuse"],
+        60: ["cloud-snow", "neige légère"],
+        61: ["cloud-snow", "neige"],
+        62: ["cloud-snow", "tempête de neige"],
+        63: ["cloud-snow", "neige légère"],
+        64: ["cloud-snow", "neige"],
+        65: ["cloud-snow", "tempête de neige"],
+        66: ["cloud-snow", "neige légère"],
+        67: ["cloud-snow", "neige"],
+        68: ["cloud-snow", "tempête de neige"],
+        70: ["cloud-drizzle", "pluie fine"],
+        71: ["cloud-rain", "pluie"],
+        72: ["cloud-rain-heavy", "tempête pluvieuse"],
+        73: ["cloud-drizzle", "pluie fine"],
+        74: ["cloud-rain", "pluie"],
+        75: ["cloud-rain-heavy", "tempête pluvieuse"],
+        76: ["cloud-drizzle", "pluie fine"],
+        77: ["cloud-rain", "pluie"],
+        78: ["cloud-rain-heavy", "tempête pluvieuse"],
         100: ["cloud-lighting", "orages"],
         101: ["cloud-lighting", "orages"],
         102: ["cloud-lighting", "orages"],
@@ -296,16 +296,16 @@ function convertInfos(sky) {
         140: ["cloud-lighting", "orages"],
         141: ["cloud-lighting", "orages"],
         142: ["cloud-lighting", "orages"],
-        210: ["rain", "pluie fine"],
-        211: ["heavy-rain", "pluie"],
-        212: ["torrential-rain", "tempête pluvieuse"],
-        220: ["light-snow", "neige légère"],
-        221: ["snow", "neige"],
-        222: ["snow-storm", "tempête de neige"],
-        230: ["rain", "pluie fine"],
-        231: ["heavy-rain", "pluie"],
-        232: ["torrential-rain", "tempête pluvieuse"],
-        235: ["hail", "grêle"],
+        210: ["cloud-drizzle", "pluie fine"],
+        211: ["cloud-rain", "pluie"],
+        212: ["cloud-rain-heavy", "tempête pluvieuse"],
+        220: ["cloud-snow", "neige légère"],
+        221: ["cloud-snow", "neige"],
+        222: ["cloud-snow", "tempête de neige"],
+        230: ["cloud-drizzle", "pluie fine"],
+        231: ["cloud-rain", "pluie"],
+        232: ["cloud-rain-heavy", "tempête pluvieuse"],
+        235: ["cloud-hail", "grêle"],
     };
     return transform[sky];
 }
@@ -469,8 +469,11 @@ function updateWebpage(infos, city) {
 
     // Sky
     let skyElementImage = document.getElementById("skyTodayImg");
-    skyElementImage.src = "assets/icons/" + convertInfos(infos[0]["weather"])[0] + ".png";
-    skyElementImage.alt = "Icône " + convertInfos(infos[0]["weather"])[1];
+    skyElementImage.classList.forEach((className) => {
+        if (className.startsWith("bi-")) {
+            skyElementImage.classList.replace(className, `bi-${convertInfos(infos[0]["weather"])[0]}`);
+        }
+    });
     if (infos[0]["probarain"] > 50) {
         document.getElementById("skyTodayProbarain").style.display = "block";
         document.getElementById("skyTodayProbarain").textContent = infos[0]["probarain"] + " %";
@@ -499,9 +502,14 @@ function updateWebpage(infos, city) {
             "<p>" + infos[i + 1]["date"][0] + " " + infos[i + 1]["date"][1] + " " + infos[i + 1]["date"][2] + "</p>";
 
         // Sky & Rain
-        elementsTable[i].childNodes[3].childNodes[1].src =
-            "assets/icons/" + convertInfos(infos[i + 1]["weather"])[0] + ".png";
-        elementsTable[i].childNodes[3].childNodes[1].alt = "Icône " + convertInfos(infos[i + 1]["weather"])[1];
+        elementsTable[i].childNodes[3].childNodes[1].classList.forEach((className) => {
+            if (className.startsWith("bi-")) {
+                elementsTable[i].childNodes[3].childNodes[1].classList.replace(
+                    className,
+                    `bi-${convertInfos(infos[i + 1]["weather"])[0]}`
+                );
+            }
+        });
 
         if (infos[i + 1]["probarain"] > 50) {
             elementsTable[i].childNodes[3].childNodes[3].childNodes[1].style.display = "block";

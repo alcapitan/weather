@@ -87,9 +87,8 @@
 
 /* Sky */
 
-#skyToday img {
-    width: 100px;
-    height: 100px;
+#skyToday i {
+    font-size: 100px;
 }
 
 /* Temperature */
@@ -105,7 +104,6 @@
 
 /* Wind */
 
-#windToday img {
-    width: 70px;
-    height: 70px;
+#windToday i {
+    font-size: 70px;
 }

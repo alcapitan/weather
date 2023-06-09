@@ -36,13 +36,12 @@
 }
 
 .nextDay p,
-.nextDay img {
+.nextDay i {
     margin: 10px;
 }
 
-.nextDay img {
-    width: 50px;
-    height: 50px;
+.nextDay i {
+    font-size: 50px;
 }
 
 .nextDay p {
