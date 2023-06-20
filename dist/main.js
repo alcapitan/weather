@@ -1,5 +1,5 @@
 "use strict"; /* ATUI Features */
-atuiKernel_FooterLastedited(9, 6, 2023);
+atuiKernel_FooterLastedited(20, 6, 2023);
 
 /* ATUI patch */
 
