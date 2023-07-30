@@ -9,7 +9,7 @@ light-snow.png > https://img.icons8.com/fluency/200/light-snow.png
 snow.png > https://img.icons8.com/fluency/200/snow.png
 snow-storm.png > https://img.icons8.com/fluency/200/snow-storm.png
 partly-cloudy-rain.png > https://img.icons8.com/fluency/200/partly-cloudy-rain.png
-slet.png > https://img.icons8.com/fluency/200/sleet.png
+sleet.png > https://img.icons8.com/fluency/200/sleet.png
 snowy-sunny-day.png > https://img.icons8.com/fluency/200/snowy-sunny-day.png
 storm.png > https://img.icons8.com/fluency/200/storm.png
 chance-of-storm.png > https://img.icons8.com/fluency/200/chance-of-storm.png

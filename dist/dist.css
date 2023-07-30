@@ -1,2 +1,0 @@
-@import"./table.css";@import"./today.css";:root{--atuiKernel_Color-Accent: 150 !important}:root{--colorLowTemp: rgb(0, 92, 230);--colorHighTemp: rgb(230, 46, 0)}body>section{display:flex;flex-direction:column;align-items:center}.temperature p:first-child{color:#005ce6;color:var(--colorLowTemp)}.temperature p:last-child{color:#e62e00;color:var(--colorHighTemp)}.rain p,.wind p{color:var(--atuiKernel_ColorschemeOB6)}.rain p:nth-child(1),.wind p:nth-child(1){font-weight:700}.atuiKernel_SectionText p{text-align:center}
-/*# sourceMappingURL=dist.css.map */

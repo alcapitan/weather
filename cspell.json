@@ -1,12 +1,14 @@
 {
     "version": "0.2",
-    "dictionaries": ["node", "npm", "fonts", "markdown", "html", "css"],
-    "language": "fr,en",
-    "useGitignore": true,
-    "ignorePaths": ["/node_modules"],
+    "ignorePaths": ["*.mp3", ".mp4", "**/dist", "package.json"],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
     "words": [
         "atui",
         "Caniuse",
+        "commitlint",
+        "cssnano",
+        "datetime",
         "Lastedited",
         "insee",
         "Searchservices",
@@ -20,5 +22,9 @@
         "Probarain",
         "tmin",
         "tmax"
-    ]
+    ],
+    "ignoreWords": [],
+    "import": ["@cspell/dict-fr-fr/cspell-ext.json"],
+    "language": "en,fr,lorem",
+    "useGitignore": true
 }

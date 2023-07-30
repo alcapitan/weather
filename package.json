@@ -3,23 +3,24 @@
     "version": "3.0.0-alpha1",
     "description": "Website of AT Weather.",
     "private": true,
-    "main": "index.html",
     "scripts": {
-        "babel:vk": "babel src/*.js --out-dir dist/ -s",
-        "cspell:vk": "cspell lint src/*.{css,js} README.md --cache --show-context",
-        "esbuild:vk": "esbuild --minify --sourcemap --keep-names --tree-shaking=false dist=dist/main.css dist=dist/main.js --outdir=dist/",
-        "eslint:vk": "eslint src/*.js --cache --fix",
-        "eslint:check:vk": "eslint src/*.js --cache",
-        "postcss:vk": "postcss src/*.css -d dist/ -m",
-        "prettier:vk": "prettier -w src/**.{css,js} *.md **.html --cache",
-        "prettier:check:vk": "prettier -c src/**.{css,js} *.md **.html --cache",
-        "stylelint:vk": "stylelint src/*.css --cache --fix",
-        "stylelint:check:vk": "stylelint src/*.css --cache",
-        "htmlhint": "htmlhint **/*.html",
-        "commitlint": "commitlint",
-        "commit": "commit",
-        "check": "npm-run-all cspell:* prettier:check:* stylelint:check:* eslint:check:*",
-        "build": "npm-run-all cspell:* prettier:* stylelint:* eslint:* postcss:* babel:* esbuild:*"
+        "babel": "babel src/main.js --out-dir dist/",
+        "cspell": "cspell lint ** --cache --show-context",
+        "cspell:check": "cspell lint ** --show-context",
+        "eslint": "eslint . --cache --fix",
+        "eslint:check": "eslint .",
+        "htmlhint": "htmlhint",
+        "postcss": "postcss src/{main,patch_atui}.css --dir dist/",
+        "prettier": "prettier -w ** --cache",
+        "prettier:check": "prettier -c **",
+        "stylelint": "stylelint **.css --cache --fix",
+        "stylelint:check": "stylelint **.css",
+        "check": "npm-run-all -p cspell:check htmlhint prettier:check stylelint:check eslint:check",
+        "build:css": "npm-run-all -s stylelint postcss",
+        "build:js": "npm-run-all -s eslint babel",
+        "build": "npm-run-all -p cspell htmlhint -s prettier -p build:css build:js",
+        "prepare": "husky install",
+        "live": "http-server"
     },
     "repository": {
         "type": "git",
@@ -32,33 +33,41 @@
     },
     "homepage": "https://github.com/alcapitan/weather#readme",
     "devDependencies": {
-        "@babel/cli": "^7.22.5",
-        "@babel/core": "^7.22.5",
-        "@babel/eslint-parser": "^7.22.5",
-        "@babel/preset-env": "^7.22.5",
-        "@commitlint/cli": "^17.6.5",
-        "@commitlint/config-conventional": "^17.6.5",
-        "@commitlint/prompt-cli": "^17.6.5",
-        "@cspell/dict-fr-fr": "^2.2.1",
+        "@babel/cli": "^7.22.9",
+        "@babel/core": "^7.22.9",
+        "@babel/preset-env": "^7.22.9",
+        "@commitlint/cli": "^17.6.7",
+        "@commitlint/config-conventional": "^17.6.7",
+        "@commitlint/cz-commitlint": "^17.6.7",
+        "@cspell/dict-fr-fr": "^2.2.2",
         "autoprefixer": "^10.4.14",
-        "cspell": "^6.31.1",
-        "esbuild": "^0.17.19",
-        "eslint": "^8.43.0",
-        "eslint-config-prettier": "^8.8.0",
+        "babel-preset-minify": "^0.5.2",
+        "commitizen": "^4.3.0",
+        "cspell": "^6.31.2",
+        "cssnano": "^6.0.1",
+        "eslint": "^8.46.0",
+        "eslint-config-prettier": "^8.9.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.28.0",
+        "eslint-plugin-n": "^16.0.1",
+        "eslint-plugin-promise": "^6.1.1",
         "htmlhint": "^1.1.4",
         "husky": "^8.0.3",
         "npm-run-all": "^4.1.5",
-        "postcss": "^8.4.24",
+        "postcss": "^8.4.27",
         "postcss-cli": "^10.1.0",
-        "postcss-preset-env": "^8.5.0",
-        "prettier": "^2.8.8",
-        "stylelint": "^15.8.0",
-        "stylelint-config-standard": "^33.0.0"
+        "postcss-import": "^15.1.0",
+        "postcss-preset-env": "^9.1.0",
+        "prettier": "^3.0.0",
+        "stylelint": "^15.10.2",
+        "stylelint-config-standard": "^34.0.0"
     },
-    "browserslist": [
-        "defaults"
-    ],
-    "engines": {
-        "node": ">=12.16"
+    "optionalDependencies": {
+        "http-server": "^14.1.1"
+    },
+    "config": {
+        "commitizen": {
+            "path": "@commitlint/cz-commitlint"
+        }
     }
 }
